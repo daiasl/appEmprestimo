@@ -21,12 +21,7 @@
 	        <th>Descrição</th>
 	      </tr>
 	    </thead>
-	    <tbody>
-	      <tr>
-	        <td>id</td>
-	        <td>long</td>
-	        <td>Identificador do empréstimo realizado.</td>
-	      </tr>
+	    <tbody>	      
 	      <tr>
 	        <td>dataEmprestimo</td>
 	        <td>LocalDateTime</td>
@@ -48,12 +43,7 @@
 	        <th>Descrição</th>
 	      </tr>
 	    </thead>
-	    <tbody>
-	      <tr>
-	        <td>id</td>
-	        <td>long</td>
-	        <td>Identificador do usuário que realizará o empréstimo.</td>
-	      </tr>
+	    <tbody>	      
 	      <tr>
 	        <td>nome</td>
 	        <td>String</td>
@@ -75,12 +65,7 @@
 	        <th>Descrição</th>
 	      </tr>
 	    </thead>
-	    <tbody>
-	      <tr>
-	        <td>id</td>
-	        <td>long</td>
-	        <td>Identificador do produto a ser emprestado.</td>
-	      </tr>
+	    <tbody>	      
 	      <tr>
 	        <td>titulo</td>
 	        <td>String</td>

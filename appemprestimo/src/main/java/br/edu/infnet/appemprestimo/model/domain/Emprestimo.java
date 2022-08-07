@@ -3,19 +3,10 @@ package br.edu.infnet.appemprestimo.model.domain;
 import java.time.LocalDateTime;
 
 public class Emprestimo {
-
-	private long id;
+	
 	private LocalDateTime dataEmprestimo;
 	private LocalDateTime dataDevolucao;
 	
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public LocalDateTime getDataEmprestimo() {
 		return dataEmprestimo;
 	}
@@ -34,6 +25,6 @@ public class Emprestimo {
 
 	@Override
 	public String toString() {		
-		return "Empréstimo:" + id + ";" + dataEmprestimo + ";" + dataDevolucao;
+		return "Empréstimo: " + dataEmprestimo + ";" + dataDevolucao;
 	}
 }

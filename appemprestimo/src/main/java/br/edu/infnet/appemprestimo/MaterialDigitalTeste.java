@@ -19,7 +19,6 @@ public class MaterialDigitalTeste implements ApplicationRunner {
 		md1.setAno(1998);
 		md1.setVolume(1);
 		md1.setLinkDoi("https://doi.org/10.1590/S1415-65551998000300009");
-		md1.setId(4);
 		md1.setTitulo("Sistemas de Informação no Brasil: uma análise dos artigos científicos dos anos 90");
 		md1.setEstante(4);
 		md1.setCodigoBarras("");
@@ -32,7 +31,6 @@ public class MaterialDigitalTeste implements ApplicationRunner {
 		md2.setAno(2008);
 		md2.setVolume(1);
 		md2.setLinkDoi("https://doi.org/10.1590/S0100-19652008000300003");
-		md2.setId(5);
 		md2.setTitulo("As redes cognitivas na ciência da informação brasileira: um estudo nos artigos científicos publicados nos periódicos da área");
 		md2.setEstante(4);
 		md2.setCodigoBarras("");
@@ -45,7 +43,6 @@ public class MaterialDigitalTeste implements ApplicationRunner {
 		md3.setAno(2022);
 		md3.setVolume(1);
 		md3.setLinkDoi("https://doi.org/10.1590/1413-81232022271.22562019");
-		md3.setId(6);
 		md3.setTitulo("Perspectivas acerca do conceito de saúde mental: análise das produções científicas brasileiras");
 		md3.setEstante(4);
 		md3.setCodigoBarras("");

@@ -17,7 +17,6 @@ public class RevistaTeste implements ApplicationRunner {
 		revista1.setIssn("1980393-1");
 		revista1.setEdicao(6);
 		revista1.setAno(2011);
-		revista1.setId(7);
 		revista1.setTitulo(".Net Magazine");
 		revista1.setEstante(5);
 		revista1.setCodigoBarras("");
@@ -29,7 +28,6 @@ public class RevistaTeste implements ApplicationRunner {
 		revista2.setIssn("2357-7886");
 		revista2.setEdicao(138);
 		revista2.setAno(2021);
-		revista2.setId(8);
 		revista2.setTitulo("Revista Wine - Entrevista com Julia Cavil");
 		revista2.setEstante(5);
 		revista2.setCodigoBarras("9772357788009");
@@ -41,7 +39,6 @@ public class RevistaTeste implements ApplicationRunner {
 		revista3.setIssn("456-7890");
 		revista3.setEdicao(1);
 		revista3.setAno(2022);
-		revista3.setId(9);
 		revista3.setTitulo("História da Humanidade");
 		revista3.setEstante(5);
 		revista3.setCodigoBarras("");

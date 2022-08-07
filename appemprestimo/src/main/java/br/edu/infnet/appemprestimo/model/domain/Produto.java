@@ -1,21 +1,13 @@
 package br.edu.infnet.appemprestimo.model.domain;
 
 public class Produto {
-	private long id;
+	
 	private String titulo;
 	private int estante;
 	private String codigoBarras;
 	private int qtdExemplares;
 	private int qtdDisponiveis;
-	
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
+		
 	public String getTitulo() {
 		return titulo;
 	}
@@ -58,6 +50,6 @@ public class Produto {
 
 	@Override
 	public String toString() {		
-		return id + ";" + titulo + ";" + estante + ";" + codigoBarras + ";" + qtdExemplares + ";" + qtdDisponiveis;
+		return titulo + ";" + estante + ";" + codigoBarras + ";" + qtdExemplares + ";" + qtdDisponiveis;
 	}
 }

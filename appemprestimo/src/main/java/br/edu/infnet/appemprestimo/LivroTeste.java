@@ -18,8 +18,7 @@ public class LivroTeste implements ApplicationRunner{
 		livro1.setVolume(1);
 		livro1.setEdicao(1);
 		livro1.setAnoPublicacao(2020);
-		livro1.setNomeAutor("Robert C. Martin");		
-		livro1.setId(1);
+		livro1.setNomeAutor("Robert C. Martin");
 		livro1.setTitulo("Desenvolvimento de Software Ágil");
 		livro1.setEstante(1);
 		livro1.setCodigoBarras("9788550815008");
@@ -33,7 +32,6 @@ public class LivroTeste implements ApplicationRunner{
 		livro2.setEdicao(2);
 		livro2.setAnoPublicacao(2020);
 		livro2.setNomeAutor("Kate Quinn");
-		livro2.setId(2);
 		livro2.setTitulo("A Rede de Alice");
 		livro2.setEstante(2);
 		livro2.setCodigoBarras("978850304513");
@@ -47,7 +45,6 @@ public class LivroTeste implements ApplicationRunner{
 		livro3.setEdicao(1);
 		livro3.setAnoPublicacao(2020);
 		livro3.setNomeAutor("Daiana Garbin");
-		livro3.setId(3);
 		livro3.setTitulo("A vida perfeita não existe");
 		livro3.setEstante(3);
 		livro3.setCodigoBarras("9786555640243");
