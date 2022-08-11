@@ -8,6 +8,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appemprestimo.model.domain.Emprestimo;
+import br.edu.infnet.appemprestimo.model.test.AppImpressao;
 
 @Component
 @Order(2)
@@ -18,17 +19,20 @@ public class EmprestimoTeste implements ApplicationRunner {
 		Emprestimo emp1 = new Emprestimo();		
 		emp1.setDataEmprestimo(LocalDateTime.now());
 		emp1.setDataDevolucao(null);
-		System.out.println(emp1);
+		
+		AppImpressao.relatorio("Emp 1", emp1);
 		
 		Emprestimo emp2 = new Emprestimo();		
 		emp2.setDataEmprestimo(LocalDateTime.of(2022, 4, 1, 10, 42));
 		emp2.setDataDevolucao(LocalDateTime.of(2022, 8, 1, 10, 42));
-		System.out.println(emp2);
+
+		AppImpressao.relatorio("Emp 2", emp2);
 		
 		Emprestimo emp3 = new Emprestimo();		
 		emp3.setDataEmprestimo(LocalDateTime.of(2022, 6, 1, 10, 42));
 		emp3.setDataDevolucao(LocalDateTime.of(2022, 6, 30, 11, 00));
-		System.out.println(emp3);		
+		
+		AppImpressao.relatorio("Emp 3", emp3);	
 	}
 
 }

@@ -8,6 +8,33 @@
 	<title>AppEmprestimo</title>
 </head>
 <body>
+	<nav class="navbar navbar-expand-sm bg-light navbar-light">
+	  <div class="container-fluid">
+	    <ul class="navbar-nav">
+	      <li class="nav-item">
+	        <a class="nav-link active" href="/">Home</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/Livro/lista">Livro</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/MaterialDigital/lista">Material Digital</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/Revista/lista">Revista</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/Produto/lista">Produto</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/Emprestimo/lista">Emprestimo</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/Usuario/lista">Usuario</a>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
 	<div class="container mt-3">
 	  <h2>AppEmprestimo</h2>
 	  <p>Projeto de empréstimos na biblioteca.</p>   
@@ -116,7 +143,7 @@
 	      <tr>
 	        <td>edicao</td>
 	        <td>int</td>
-	        <td>Número da edicao dos livros.</td>
+	        <td>Número da edição dos livros.</td>
 	      </tr>	
 		  <tr>
 	        <td>anoPublicacao</td>

@@ -6,6 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appemprestimo.model.domain.Revista;
+import br.edu.infnet.appemprestimo.model.test.AppImpressao;
 
 @Component
 @Order(4)
@@ -22,8 +23,9 @@ public class RevistaTeste implements ApplicationRunner {
 		revista1.setCodigoBarras("");
 		revista1.setQtdDisponiveis(20);
 		revista1.setQtdExemplares(20);		
-		System.out.println(revista1);
-	
+		
+		AppImpressao.relatorio("Revista 1",revista1);
+		
 		Revista revista2=new Revista();
 		revista2.setIssn("2357-7886");
 		revista2.setEdicao(138);
@@ -33,7 +35,8 @@ public class RevistaTeste implements ApplicationRunner {
 		revista2.setCodigoBarras("9772357788009");
 		revista2.setQtdDisponiveis(3);
 		revista2.setQtdExemplares(20);	
-		System.out.println(revista2);
+		
+		AppImpressao.relatorio("Revista 2",revista2);
 
 		Revista revista3=new Revista();		
 		revista3.setIssn("456-7890");
@@ -44,7 +47,8 @@ public class RevistaTeste implements ApplicationRunner {
 		revista3.setCodigoBarras("");
 		revista3.setQtdDisponiveis(1);
 		revista3.setQtdExemplares(1);	
-		System.out.println(revista3);
+		
+		AppImpressao.relatorio("Revista 3",revista3);
 	
 	}
 

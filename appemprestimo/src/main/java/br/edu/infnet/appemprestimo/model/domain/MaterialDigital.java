@@ -42,4 +42,15 @@ public class MaterialDigital extends Produto {
 	public String toString() {		
 		return "Material Digital:" + doi + ";" + volume + ";" + ano + ";" + linkDoi + ";" + super.toString();
 	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#materialdigital");
+		System.out.println(this);		
+	}
+
+	@Override
+	public int CalculaQtdProdutoEmprestado() {		
+		return qtdExemplares - getQtdDisponiveis();
+	}
 }

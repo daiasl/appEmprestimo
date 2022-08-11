@@ -4,6 +4,14 @@ public class Revista extends Produto {
 	private String issn;	
 	private int edicao;	
 	private int ano;
+	
+	@Override
+	public int CalculaQtdProdutoEmprestado() {		
+		System.out.println("Calcula qtd produtos emprestados - revista:");
+		int qtdRevista = (ano==2022) ? 1 : 0;		
+		//return super.CalculaQtdProdutoEmprestado() + qtdRevista;
+		return qtdExemplares - getQtdDisponiveis() + qtdRevista;
+	}
 		
 	public String getIssn() {
 		return issn;
@@ -32,5 +40,11 @@ public class Revista extends Produto {
 	@Override
 	public String toString() {		
 		return "Revista:" + issn + ";" + edicao + ";" + ano + ";" + super.toString();
+	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#revista");
+		System.out.println(this);
 	}
 }

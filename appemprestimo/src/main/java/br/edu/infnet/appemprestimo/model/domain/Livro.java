@@ -7,6 +7,11 @@ public class Livro extends Produto{
 	private int anoPublicacao;
 	private String nomeAutor;
 	
+	@Override
+	public int CalculaQtdProdutoEmprestado() {		
+		return (getQtdExemplares() - ((anoPublicacao==2022) ? 3 : 2));
+	}
+	
 	public String getIsbn() {
 		return isbn;
 	}
@@ -50,5 +55,11 @@ public class Livro extends Produto{
 	@Override
 	public String toString() {		
 		return "Livro:" + isbn + ";" + volume + ";" + edicao + ";" + anoPublicacao + ";" + nomeAutor + ";" + super.toString();
+	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#livro");
+		System.out.println(this);		
 	}
 }

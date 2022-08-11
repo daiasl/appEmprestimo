@@ -1,13 +1,22 @@
 package br.edu.infnet.appemprestimo.model.domain;
 
-public class Produto {
+import br.edu.infnet.appemprestimo.interfaces.IPrinter;
+
+public abstract class Produto implements IPrinter{
 	
 	private String titulo;
 	private int estante;
 	private String codigoBarras;
-	private int qtdExemplares;
+	protected int qtdExemplares;
 	private int qtdDisponiveis;
-		
+	
+	public abstract int CalculaQtdProdutoEmprestado();
+	
+	/*public int CalculaQtdProdutoEmprestado() {
+		System.out.println("Calcula qtd produtos emprestados - mãe:");
+		return qtdExemplares - qtdDisponiveis;
+	}*/
+	
 	public String getTitulo() {
 		return titulo;
 	}
@@ -50,6 +59,9 @@ public class Produto {
 
 	@Override
 	public String toString() {		
-		return titulo + ";" + estante + ";" + codigoBarras + ";" + qtdExemplares + ";" + qtdDisponiveis;
+		return titulo + ";" + estante + ";" + codigoBarras + ";" + qtdExemplares + ";" + qtdDisponiveis + ";" + CalculaQtdProdutoEmprestado();
 	}
+
+	
+		
 }
