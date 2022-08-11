@@ -43,37 +43,35 @@
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
-	        <th>Atributo</th>
-	        <th>Tipo</th>
-	        <th>Descrição</th>
+	        <th>Titulo</th>
+			<th>Estante</th>
+			<th>CodigoBarras</th>
+			<th>QtdDisponiveis</th>
+			<th>QtdExemplares</th>
 	      </tr>
 	    </thead>
 	    <tbody>	      
 	      <tr>
-	        <td>titulo</td>
-	        <td>String</td>
-	        <td>Título do produto a ser emprestado.</td>
+	        <td>Sistemas de Informação no Brasil: uma análise dos artigos científicos dos anos 90</td>
+			<td>4</td>
+			<td>Não há</td>
+			<td>1</td>
+			<td>1</td>
 	      </tr>
 	      <tr>
-	        <td>estante</td>
-	        <td>int</td>
-	        <td>Em qual estante está localizado o produto.</td>
+	        <td>As redes cognitivas na ciência da informação brasileira: um estudo nos artigos científicos publicados nos periódicos da área</td>
+			<td>4</td>
+			<td>Não há</td>
+			<td>1</td>
+			<td>1</td>
 	      </tr>	
 		  <tr>
-	        <td>codigoBarras</td>
-	        <td>String</td>
-	        <td>Representação gráfica de uma sequência numérica utilizada para identificar um produto.</td>
-	      </tr>
-		  <tr>
-	        <td>qtdExemplares</td>
-	        <td>int</td>
-	        <td>Quantidade de exemplares do mesmo produto.</td>
-	      </tr>	
-		  <tr>
-	        <td>qtdDisponiveis</td>
-	        <td>int</td>
-	        <td>Quantidade de produtos disponíveis.</td>
-	      </tr>			  
+	        <td>Perspectivas acerca do conceito de saúde mental: análise das produções científicas brasileiras</td>
+			<td>4</td>
+			<td>Não há</td>
+			<td>1</td>
+			<td>1</td>
+	      </tr>		  		  
 	    </tbody>
 	  </table>	  
 	</div>

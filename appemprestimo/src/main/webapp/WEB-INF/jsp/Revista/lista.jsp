@@ -43,26 +43,46 @@
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
-	        <th>Atributo</th>
-	        <th>Tipo</th>
-	        <th>Descrição</th>
+	        <th>Issn</th>
+			<th>Edicao</th>
+			<th>Ano</th>
+			<th>Titulo</th>
+			<th>Estante</th>
+			<th>CodigoBarras</th>
+			<th>QtdDisponiveis</th>
+			<th>QtdExemplares</th>
 	      </tr>
 	    </thead>
 	    <tbody>
 	      <tr>
-	        <td>issn</td>
-	        <td>String</td>
-	        <td>Número internacional normalizado para publicações seriadas, como é o caso de Revistas.</td>
+	        <td>1980393-1</td>
+			<td>6</td>
+			<td>2011</td>
+			<td>.Net Magazine</td>
+			<td>5</td>
+			<td>Não há</td>
+			<td>20</td>
+			<td>20</td>
 	      </tr>
 	      <tr>
-	        <td>edicao</td>
-	        <td>int</td>
-	        <td>Número da edição das Revistas.</td>
+	        <td>2357-7886</td>
+			<td>138</td>
+			<td>2021</td>
+			<td>Revista Wine - Entrevista com Julia Cavil</td>
+			<td>5</td>
+			<td>9772357788009</td>
+			<td>3</td>
+			<td>20</td>
 	      </tr>	      
 		  <tr>
-	        <td>ano</td>
-	        <td>int</td>
-	        <td>Ano das Revistas.</td>
+	        <td>456-7890</td>
+			<td>1</td>
+			<td>2022</td>
+			<td>História da Humanidade</td>
+			<td>5</td>
+			<td>Não há</td>
+			<td>1</td>
+			<td>1</td>
 	      </tr>		  			  		  
 	    </tbody>
 	  </table>	  

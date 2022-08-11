@@ -43,21 +43,22 @@
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
-	        <th>Atributo</th>
-	        <th>Tipo</th>
-	        <th>Descrição</th>
+	        <th>nome</th>
+	        <th>cpf</th>	        
 	      </tr>
 	    </thead>
 	    <tbody>	      
 	      <tr>
-	        <td>nome</td>
-	        <td>String</td>
-	        <td>Nome do usuário.</td>
+	        <td>João da Silva</td>
+	        <td>11111111111</td>	        
 	      </tr>
 	      <tr>
-	        <td>cpf</td>
-	        <td>String</td>
-	        <td>CPF do usuário.</td>
+	        <td>Ana de Souza Pereira</td>
+	        <td>22222222222</td>	        
+	      </tr>	
+	      <tr>
+	        <td>Maria Helena da Silva</td>
+	        <td>33333333333</td>	        
 	      </tr>	      
 	    </tbody>
 	  </table>	  

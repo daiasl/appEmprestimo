@@ -43,32 +43,51 @@
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
-	        <th>Atributo</th>
-	        <th>Tipo</th>
-	        <th>Descrição</th>
+	        <th>Doi</th>
+			<th>Ano</th>
+			<th>Volume</th>
+			<th>LinkDoi</th>
+			<th>Titulo</th>
+			<th>Estante</th>
+			<th>CodigoBarras</th>
+			<th>QtdDisponiveis</th>
+			<th>QtdExemplares</th>
 	      </tr>
 	    </thead>
 	    <tbody>
 	      <tr>
-	        <td>doi</td>
-	        <td>String</td>
-	        <td>Identificador de arquivo digital.</td>
+	        <td>10.1590/S1415</td>
+			<td>1998</td>
+			<td>1</td>
+			<td>https://doi.org/10.1590/S1415-65551998000300009</td>
+			<td>Sistemas de Informação no Brasil: uma análise dos artigos científicos dos anos 90</td>
+			<td>4</td>
+			<td>Não há</td>
+			<td>1</td>
+			<td>1</td>
 	      </tr>
 	      <tr>
-	        <td>volume</td>
-	        <td>int</td>
-	        <td>Volume identificado nos arquivos digitais.</td>
+	        <td>10.1590/S0100</td>
+			<td>2008</td>
+			<td>1</td>
+			<td>https://doi.org/10.1590/S0100-19652008000300003</td>
+			<td>As redes cognitivas na ciência da informação brasileira: um estudo nos artigos científicos publicados nos periódicos da área</td>
+			<td>4</td>
+			<td>Não há</td>
+			<td>1</td>
+			<td>1</td>
 	      </tr>	      
 		  <tr>
-	        <td>ano</td>
-	        <td>int</td>
-	        <td>Ano do arquivo digital.</td>
-	      </tr>
-	      <tr>
-	        <td>linkDoi</td>
-	        <td>String</td>
-	        <td>Link completo contendo o código DOI.</td>
-	      </tr>		  			  		  
+	        <td>10.1590/1413</td>
+			<td>2022</td>
+			<td>1</td>
+			<td>https://doi.org/10.1590/1413-81232022271.22562019</td>
+			<td>Perspectivas acerca do conceito de saúde mental: análise das produções científicas brasileiras</td>
+			<td>4</td>
+			<td>Não há</td>
+			<td>1</td>
+			<td>1</td>
+	      </tr>	      	  			  		  
 	    </tbody>
 	  </table>
 	</div>
