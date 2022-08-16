@@ -1,5 +1,7 @@
 package br.edu.infnet.appemprestimo.model.domain;
 
+import java.util.Objects;
+
 import br.edu.infnet.appemprestimo.interfaces.IPrinter;
 
 public abstract class Produto implements IPrinter{
@@ -62,6 +64,21 @@ public abstract class Produto implements IPrinter{
 		return titulo + ";" + estante + ";" + codigoBarras + ";" + qtdExemplares + ";" + qtdDisponiveis + ";" + CalculaQtdProdutoEmprestado();
 	}
 
-	
+	@Override
+	public int hashCode() {
+		return Objects.hash(titulo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		//if (getClass() != obj.getClass())
+		//	return false;
+		Produto other = (Produto) obj;
+		return Objects.equals(titulo, other.titulo);
+	}
 		
 }

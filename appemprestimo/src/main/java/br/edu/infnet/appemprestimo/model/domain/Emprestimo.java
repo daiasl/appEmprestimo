@@ -1,6 +1,7 @@
 package br.edu.infnet.appemprestimo.model.domain;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import br.edu.infnet.appemprestimo.interfaces.IPrinter;
 
@@ -8,13 +9,16 @@ public class Emprestimo implements IPrinter {
 	
 	private LocalDateTime dataEmprestimo;
 	private LocalDateTime dataDevolucao;
+	private Usuario usuario;
+	private Set<Produto> produtos;
+	
+	public Emprestimo(Usuario usuario) {
+		this.dataEmprestimo = LocalDateTime.now();
+		this.usuario = usuario;
+	}
 	
 	public LocalDateTime getDataEmprestimo() {
 		return dataEmprestimo;
-	}
-
-	public void setDataEmprestimo(LocalDateTime dataEmprestimo) {
-		this.dataEmprestimo = dataEmprestimo;
 	}
 
 	public LocalDateTime getDataDevolucao() {
@@ -27,7 +31,7 @@ public class Emprestimo implements IPrinter {
 
 	@Override
 	public String toString() {		
-		return "Empréstimo: " + dataEmprestimo + ";" + dataDevolucao;
+		return "Empréstimo: " + dataEmprestimo + ";" + dataDevolucao + ";" + usuario + ";" + produtos.size();
 	}
 
 	@Override
@@ -35,5 +39,14 @@ public class Emprestimo implements IPrinter {
 		System.out.println("#emprestimo");
 		System.out.println(this);		
 	}
+
+	public Set<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(Set<Produto> produtos) {
+		this.produtos = produtos;
+	}
+	
 	
 }
