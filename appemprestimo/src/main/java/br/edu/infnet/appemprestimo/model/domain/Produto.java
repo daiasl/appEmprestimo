@@ -5,7 +5,7 @@ import java.util.Objects;
 import br.edu.infnet.appemprestimo.interfaces.IPrinter;
 
 public abstract class Produto implements IPrinter{
-	
+	private Integer id;
 	private String titulo;
 	private int estante;
 	private String codigoBarras;
@@ -79,6 +79,14 @@ public abstract class Produto implements IPrinter{
 		//	return false;
 		Produto other = (Produto) obj;
 		return Objects.equals(titulo, other.titulo);
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 		
 }
