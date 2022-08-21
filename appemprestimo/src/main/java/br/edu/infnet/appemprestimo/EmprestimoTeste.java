@@ -9,13 +9,13 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.appemprestimo.controller.EmprestimoController;
 import br.edu.infnet.appemprestimo.model.domain.Emprestimo;
 import br.edu.infnet.appemprestimo.model.domain.Livro;
 import br.edu.infnet.appemprestimo.model.domain.MaterialDigital;
 import br.edu.infnet.appemprestimo.model.domain.Produto;
 import br.edu.infnet.appemprestimo.model.domain.Revista;
 import br.edu.infnet.appemprestimo.model.domain.Usuario;
-import br.edu.infnet.appemprestimo.model.test.AppImpressao;
 
 @Component
 @Order(2)
@@ -75,26 +75,39 @@ public class EmprestimoTeste implements ApplicationRunner {
 		listaProdutosEmp1.add(livro2);
 		listaProdutosEmp1.add(livro2);
 		listaProdutosEmp1.add(md1);
-		listaProdutosEmp1.add(revista1);				
-		Emprestimo emp1 = new Emprestimo(new Usuario("João da Silva","11111111111"));
+		listaProdutosEmp1.add(revista1);
+		
+		Usuario user1=new Usuario();
+		user1.setNome("João da Silva");
+		user1.setCpf("11111111111");
+		
+		Emprestimo emp1 = new Emprestimo(user1);
 		emp1.setDataDevolucao(null);		
-		emp1.setProdutos(listaProdutosEmp1);		
-		AppImpressao.relatorio("Emp 1", emp1);
+		emp1.setProdutos(listaProdutosEmp1);	
+		EmprestimoController.incluir(emp1);
 				
 		Set<Produto> listaProdutosEmp2 = new HashSet<Produto>();
 		listaProdutosEmp2.add(livro1);
-		listaProdutosEmp2.add(md1);				
-		Emprestimo emp2 = new Emprestimo(new Usuario("Ana de Souza Pereira","22222222222"));
+		listaProdutosEmp2.add(md1);		
+		
+		user1.setNome("Ana de Souza Pereira");
+		user1.setCpf("22222222222");
+		
+		Emprestimo emp2 = new Emprestimo(user1);
 		emp2.setDataDevolucao(LocalDateTime.of(2022, 8, 1, 10, 42));
 		emp2.setProdutos(listaProdutosEmp2);		
-		AppImpressao.relatorio("Emp 2", emp2);
-		
+		EmprestimoController.incluir(emp2);
+				
 		Set<Produto> listaProdutosEmp3 = new HashSet<Produto>();		
-		listaProdutosEmp3.add(revista1);		
-		Emprestimo emp3 = new Emprestimo(new Usuario("Maria Helena da Silva","33333333333"));		
+		listaProdutosEmp3.add(revista1);
+		
+		user1.setNome("Maria Helena da Silva");
+		user1.setCpf("33333333333");
+		
+		Emprestimo emp3 = new Emprestimo(user1);		
 		emp3.setDataDevolucao(LocalDateTime.of(2022, 6, 30, 11, 00));
 		emp3.setProdutos(listaProdutosEmp3);		
-		AppImpressao.relatorio("Emp 3", emp3);	
+		EmprestimoController.incluir(emp3);	
 	}
 
 }

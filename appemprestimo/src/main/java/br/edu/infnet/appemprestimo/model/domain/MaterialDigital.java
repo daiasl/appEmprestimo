@@ -1,6 +1,7 @@
 package br.edu.infnet.appemprestimo.model.domain;
 
 public class MaterialDigital extends Produto {
+	
 	private String doi;	
 	private int volume;	
 	private int ano;

@@ -5,8 +5,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.appemprestimo.controller.MaterialDigitalController;
 import br.edu.infnet.appemprestimo.model.domain.MaterialDigital;
-import br.edu.infnet.appemprestimo.model.test.AppImpressao;
 
 @Component
 @Order(5)
@@ -25,8 +25,7 @@ public class MaterialDigitalTeste implements ApplicationRunner {
 		md1.setCodigoBarras("");
 		md1.setQtdDisponiveis(1);
 		md1.setQtdExemplares(1);
-				
-		AppImpressao.relatorio("Material Digital 1",md1);
+		MaterialDigitalController.incluir(md1);
 				
 		MaterialDigital md2 = new MaterialDigital();
 		md2.setDoi("10.1590/S0100");
@@ -38,8 +37,7 @@ public class MaterialDigitalTeste implements ApplicationRunner {
 		md2.setCodigoBarras("");
 		md2.setQtdDisponiveis(1);
 		md2.setQtdExemplares(1);
-				
-		AppImpressao.relatorio("Material Digital 2",md2);
+		MaterialDigitalController.incluir(md2);
 		
 		MaterialDigital md3 = new MaterialDigital();
 		md3.setDoi("10.1590/1413");
@@ -51,8 +49,7 @@ public class MaterialDigitalTeste implements ApplicationRunner {
 		md3.setCodigoBarras("");
 		md3.setQtdDisponiveis(1);
 		md3.setQtdExemplares(1);
-		//System.out.println(md3);		
-		AppImpressao.relatorio("Material Digital 3",md3);
+		MaterialDigitalController.incluir(md3);
 		
 	}
 

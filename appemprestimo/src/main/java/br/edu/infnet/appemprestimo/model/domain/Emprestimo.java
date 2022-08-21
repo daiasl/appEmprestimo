@@ -6,7 +6,7 @@ import java.util.Set;
 import br.edu.infnet.appemprestimo.interfaces.IPrinter;
 
 public class Emprestimo implements IPrinter {
-	
+	private Integer id;
 	private LocalDateTime dataEmprestimo;
 	private LocalDateTime dataDevolucao;
 	private Usuario usuario;
@@ -48,5 +48,11 @@ public class Emprestimo implements IPrinter {
 		this.produtos = produtos;
 	}
 	
-	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 }
