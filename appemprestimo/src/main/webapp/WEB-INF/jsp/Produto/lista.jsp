@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -38,8 +37,7 @@
 		<h3>Classe: Produto</h3>
 		<table class="table table-striped">
 			<thead>
-				<tr>
-					<th>id</th>
+				<tr>					
 					<th>Titulo</th>
 					<th>Estante</th>
 					<th>CodigoBarras</th>
@@ -48,17 +46,31 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="p" items="${listagemProduto}">
-					<tr>
-						<td>${p.id}</td>
-						<td>${p.titulo}</td>
-						<td>${p.estante}</td>
-						<td>${p.codigoBarras}</td>
-						<td>${p.qtdDisponiveis}</td>
-						<td>${p.qtdExemplares}</td>
-						<td><a href="/Produto/${p.id}/Excluir">Excluir</a></td>
-					</tr>
-				</c:forEach>
+				<tr>
+					<td>Sistemas de Informação no Brasil: uma análise dos artigos
+						científicos dos anos 90</td>
+					<td>4</td>
+					<td>Não há</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>As redes cognitivas na ciência da informação brasileira:
+						um estudo nos artigos científicos publicados nos periódicos da
+						área</td>
+					<td>4</td>
+					<td>Não há</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>Perspectivas acerca do conceito de saúde mental: análise
+						das produções científicas brasileiras</td>
+					<td>4</td>
+					<td>Não há</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>
