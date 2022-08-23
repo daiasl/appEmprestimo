@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 import br.edu.infnet.appemprestimo.interfaces.IPrinter;
+import br.edu.infnet.appemprestimo.model.exceptions.UsuarioNuloException;
 
 public class Emprestimo implements IPrinter {
 	private Integer id;
@@ -12,9 +13,15 @@ public class Emprestimo implements IPrinter {
 	private Usuario usuario;
 	private Set<Produto> produtos;
 	
-	public Emprestimo(Usuario usuario) {
+	public Emprestimo(Usuario usuario, Set<Produto> produtos) throws UsuarioNuloException {
+		
+		if(usuario == null){
+			throw new UsuarioNuloException("Não é permitido realiza empréstimo sem usuário.");
+		}
+		
 		this.dataEmprestimo = LocalDateTime.now();
 		this.usuario = usuario;
+		this.produtos = produtos;
 	}
 	
 	public LocalDateTime getDataEmprestimo() {
@@ -40,14 +47,6 @@ public class Emprestimo implements IPrinter {
 		System.out.println(this);		
 	}
 
-	public Set<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(Set<Produto> produtos) {
-		this.produtos = produtos;
-	}
-	
 	public Integer getId() {
 		return id;
 	}

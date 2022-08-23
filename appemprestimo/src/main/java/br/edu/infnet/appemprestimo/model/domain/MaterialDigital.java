@@ -1,5 +1,7 @@
 package br.edu.infnet.appemprestimo.model.domain;
 
+import br.edu.infnet.appemprestimo.model.exceptions.QuantidadeExemplaresZeradoNegativoException;
+
 public class MaterialDigital extends Produto {
 	
 	private String doi;	
@@ -51,7 +53,13 @@ public class MaterialDigital extends Produto {
 	}
 
 	@Override
-	public int CalculaQtdProdutoEmprestado() {		
+	public int CalculaQtdProdutoEmprestado() throws QuantidadeExemplaresZeradoNegativoException {	
+		if (qtdExemplares == 0) {
+			throw new QuantidadeExemplaresZeradoNegativoException("A quantidade de exemplares ("+ qtdExemplares +") não pode igual a zero.");
+		}
+		if (qtdExemplares < 0) {
+			throw new QuantidadeExemplaresZeradoNegativoException("A quantidade de exemplares ("+ qtdExemplares +") não pode ter valor negativo.");
+		}
 		return qtdExemplares - getQtdDisponiveis();
 	}
 }

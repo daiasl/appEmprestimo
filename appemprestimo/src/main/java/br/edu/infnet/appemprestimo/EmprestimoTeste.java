@@ -16,13 +16,15 @@ import br.edu.infnet.appemprestimo.model.domain.MaterialDigital;
 import br.edu.infnet.appemprestimo.model.domain.Produto;
 import br.edu.infnet.appemprestimo.model.domain.Revista;
 import br.edu.infnet.appemprestimo.model.domain.Usuario;
+import br.edu.infnet.appemprestimo.model.exceptions.CpfInvalidoException;
+import br.edu.infnet.appemprestimo.model.exceptions.UsuarioNuloException;
 
 @Component
 @Order(2)
 public class EmprestimoTeste implements ApplicationRunner {
 
 	@Override
-	public void run(ApplicationArguments args) throws Exception {
+	public void run(ApplicationArguments args) {
 		
 		Livro livro1 = new Livro();
 		livro1.setIsbn("987-85-508-1500-8");
@@ -69,45 +71,52 @@ public class EmprestimoTeste implements ApplicationRunner {
 		revista1.setQtdDisponiveis(20);
 		revista1.setQtdExemplares(20);
 		
-		Set<Produto> listaProdutosEmp1 = new HashSet<Produto>();
-		listaProdutosEmp1.add(livro1);
-		listaProdutosEmp1.add(livro1);
-		listaProdutosEmp1.add(livro2);
-		listaProdutosEmp1.add(livro2);
-		listaProdutosEmp1.add(md1);
-		listaProdutosEmp1.add(revista1);
 		
-		Usuario user1=new Usuario();
-		user1.setNome("João da Silva");
-		user1.setCpf("11111111111");
+		try {
+			Set<Produto> listaProdutosEmp1 = new HashSet<Produto>();
+			listaProdutosEmp1.add(livro1);
+			listaProdutosEmp1.add(livro1);
+			listaProdutosEmp1.add(livro2);
+			listaProdutosEmp1.add(livro2);
+			listaProdutosEmp1.add(md1);
+			listaProdutosEmp1.add(revista1);
+			
+			Usuario user1 = new Usuario("João da Silva","11111111111");
+			
+			Emprestimo emp1 = new Emprestimo(user1,listaProdutosEmp1);
+			emp1.setDataDevolucao(null);
+			EmprestimoController.incluir(emp1);			
+		} catch (CpfInvalidoException | UsuarioNuloException e) {
+			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());	
+		}
 		
-		Emprestimo emp1 = new Emprestimo(user1);
-		emp1.setDataDevolucao(null);		
-		emp1.setProdutos(listaProdutosEmp1);	
-		EmprestimoController.incluir(emp1);
-				
-		Set<Produto> listaProdutosEmp2 = new HashSet<Produto>();
-		listaProdutosEmp2.add(livro1);
-		listaProdutosEmp2.add(md1);		
+		try {
+			Set<Produto> listaProdutosEmp2 = new HashSet<Produto>();
+			listaProdutosEmp2.add(livro1);
+			listaProdutosEmp2.add(md1);
+			
+			Usuario user2=new Usuario("Ana de Souza Pereira","22222222222");
+			
+			Emprestimo emp2 = new Emprestimo(user2,listaProdutosEmp2);
+			emp2.setDataDevolucao(LocalDateTime.of(2022, 8, 1, 10, 42));		
+			EmprestimoController.incluir(emp2);
+		} catch (Exception e) {
+			System.out.println("[ERROR - USUARIO ] " + e.getMessage());
+		}
+
+		try {
+			Set<Produto> listaProdutosEmp3 = new HashSet<Produto>();		
+			listaProdutosEmp3.add(revista1);
+			
+			Usuario user3=new Usuario("Maria Helena da Silva","33333333333");
+			
+			Emprestimo emp3 = new Emprestimo(user3, listaProdutosEmp3);		
+			emp3.setDataDevolucao(LocalDateTime.of(2022, 6, 30, 11, 00));
+			EmprestimoController.incluir(emp3);
+		} catch (Exception e) {
+			System.out.println("[ERROR - USUARIO ] " + e.getMessage());
+		}
 		
-		user1.setNome("Ana de Souza Pereira");
-		user1.setCpf("22222222222");
-		
-		Emprestimo emp2 = new Emprestimo(user1);
-		emp2.setDataDevolucao(LocalDateTime.of(2022, 8, 1, 10, 42));
-		emp2.setProdutos(listaProdutosEmp2);		
-		EmprestimoController.incluir(emp2);
-				
-		Set<Produto> listaProdutosEmp3 = new HashSet<Produto>();		
-		listaProdutosEmp3.add(revista1);
-		
-		user1.setNome("Maria Helena da Silva");
-		user1.setCpf("33333333333");
-		
-		Emprestimo emp3 = new Emprestimo(user1);		
-		emp3.setDataDevolucao(LocalDateTime.of(2022, 6, 30, 11, 00));
-		emp3.setProdutos(listaProdutosEmp3);		
-		EmprestimoController.incluir(emp3);	
 	}
 
 }

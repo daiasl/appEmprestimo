@@ -39,20 +39,23 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>id</th>
 					<th>nome</th>
 					<th>cpf</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="u" items="${listagemUsuario}">
-					<tr>
-						<td>${u.id}</td>
-						<td>${u.nome}</td>
-						<td>${u.cpf}</td>
-						<td><a href="/Usuario/${u.id}/Excluir">Excluir</a></td>
-					</tr>
-				</c:forEach>
+				<tr>
+					<td>João da Silva</td>
+					<td>11111111111</td>
+				</tr>
+				<tr>
+					<td>Ana de Souza Pereira</td>
+					<td>22222222222</td>
+				</tr>
+				<tr>
+					<td>Maria Helena da Silva</td>
+					<td>33333333333</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

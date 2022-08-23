@@ -3,6 +3,9 @@ package br.edu.infnet.appemprestimo.model.domain;
 import java.util.Objects;
 
 import br.edu.infnet.appemprestimo.interfaces.IPrinter;
+import br.edu.infnet.appemprestimo.model.exceptions.AnoPublicacaoInvalidoException;
+import br.edu.infnet.appemprestimo.model.exceptions.QuantidadeExemplaresZeradoNegativoException;
+import br.edu.infnet.appemprestimo.model.exceptions.QuantidadeIncorretaException;
 
 public abstract class Produto implements IPrinter{
 	private Integer id;
@@ -12,7 +15,7 @@ public abstract class Produto implements IPrinter{
 	protected int qtdExemplares;
 	private int qtdDisponiveis;
 	
-	public abstract int CalculaQtdProdutoEmprestado();
+	public abstract int CalculaQtdProdutoEmprestado() throws AnoPublicacaoInvalidoException, QuantidadeExemplaresZeradoNegativoException, QuantidadeIncorretaException;
 	
 	/*public int CalculaQtdProdutoEmprestado() {
 		System.out.println("Calcula qtd produtos emprestados - mãe:");
@@ -61,7 +64,7 @@ public abstract class Produto implements IPrinter{
 
 	@Override
 	public String toString() {		
-		return titulo + ";" + estante + ";" + codigoBarras + ";" + qtdExemplares + ";" + qtdDisponiveis + ";" + CalculaQtdProdutoEmprestado();
+		return titulo + ";" + estante + ";" + codigoBarras + ";" + qtdExemplares + ";" + qtdDisponiveis;
 	}
 
 	@Override

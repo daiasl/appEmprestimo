@@ -1,5 +1,7 @@
 package br.edu.infnet.appemprestimo.model.domain;
 
+import br.edu.infnet.appemprestimo.model.exceptions.AnoPublicacaoInvalidoException;
+
 public class Livro extends Produto{
 	private String isbn;	
 	private int volume;	
@@ -8,7 +10,10 @@ public class Livro extends Produto{
 	private String nomeAutor;
 	
 	@Override
-	public int CalculaQtdProdutoEmprestado() {		
+	public int CalculaQtdProdutoEmprestado() throws AnoPublicacaoInvalidoException {
+		if (anoPublicacao < 1900) {
+			throw new AnoPublicacaoInvalidoException("Ano de publicação (" + anoPublicacao + ") não pode ser inferior a 1900.");
+		}		
 		return (getQtdExemplares() - ((anoPublicacao==2022) ? 3 : 2));
 	}
 	

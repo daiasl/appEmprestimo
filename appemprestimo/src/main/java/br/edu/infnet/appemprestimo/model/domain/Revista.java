@@ -1,15 +1,20 @@
 package br.edu.infnet.appemprestimo.model.domain;
 
+import br.edu.infnet.appemprestimo.model.exceptions.QuantidadeIncorretaException;
+
 public class Revista extends Produto {
 	private String issn;	
 	private int edicao;	
 	private int ano;
 	
 	@Override
-	public int CalculaQtdProdutoEmprestado() {		
+	public int CalculaQtdProdutoEmprestado() throws QuantidadeIncorretaException {		
 		System.out.println("Calcula qtd produtos emprestados - revista:");
-		int qtdRevista = (ano==2022) ? 1 : 0;		
-		//return super.CalculaQtdProdutoEmprestado() + qtdRevista;
+		int qtdRevista = (ano==2022) ? 20 : 10;		
+		
+		if (qtdRevista < 10 || qtdRevista > 20 ) {
+			throw new QuantidadeIncorretaException("A quantidade de revista não pode ser menor que 10 ou maior que 20.");
+		}		
 		return qtdExemplares - getQtdDisponiveis() + qtdRevista;
 	}
 		
