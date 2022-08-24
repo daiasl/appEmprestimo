@@ -10,10 +10,10 @@ public class Revista extends Produto {
 	@Override
 	public int CalculaQtdProdutoEmprestado() throws QuantidadeIncorretaException {		
 		System.out.println("Calcula qtd produtos emprestados - revista:");
-		int qtdRevista = (ano==2022) ? 20 : 10;		
+		int qtdRevista = (ano==2022) ? 1 : 0;		
 		
-		if (qtdRevista < 10 || qtdRevista > 20 ) {
-			throw new QuantidadeIncorretaException("A quantidade de revista não pode ser menor que 10 ou maior que 20.");
+		if (getQtdDisponiveis() < 1 || getQtdDisponiveis() > 50 ) {
+			throw new QuantidadeIncorretaException("A quantidade de revistas disponíveis não pode ser menor que 1 ou maior que 50.");
 		}		
 		return qtdExemplares - getQtdDisponiveis() + qtdRevista;
 	}

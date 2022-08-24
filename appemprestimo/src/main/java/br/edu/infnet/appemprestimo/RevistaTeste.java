@@ -46,8 +46,54 @@ public class RevistaTeste implements ApplicationRunner {
 		} catch (Exception e) {
 			System.out.println("[ERROR - Revista] " + e.getMessage());
 		}
-			
-		//fazer o teste da qtdrevista		
+		
+		try {
+			Revista revista3=new Revista();		
+			revista3.setIssn("456-7890");
+			revista3.setEdicao(1);
+			revista3.setAno(2022);
+			revista3.setTitulo("História da Humanidade");
+			revista3.setEstante(5);
+			revista3.setCodigoBarras("");
+			revista3.setQtdDisponiveis(1);
+			revista3.setQtdExemplares(1);	
+			System.out.println("Calcula qtd. produto emprestado: " + revista3.CalculaQtdProdutoEmprestado());
+			RevistaController.incluir(revista3);
+		} catch (Exception e) {
+			System.out.println("[ERROR - Revista] " + e.getMessage());
+		}
+		
+		try {
+			Revista revista4=new Revista();		
+			revista4.setIssn("456-7890");
+			revista4.setEdicao(1);
+			revista4.setAno(2022);
+			revista4.setTitulo("História da Humanidade");
+			revista4.setEstante(5);
+			revista4.setCodigoBarras("");
+			revista4.setQtdDisponiveis(0);
+			revista4.setQtdExemplares(1);	
+			System.out.println("Calcula qtd. produto emprestado: " + revista4.CalculaQtdProdutoEmprestado());
+			RevistaController.incluir(revista4);
+		} catch (Exception e) {
+			System.out.println("[ERROR - Revista] " + e.getMessage());
+		}
+		
+		try {
+			Revista revista5=new Revista();		
+			revista5.setIssn("456-7890");
+			revista5.setEdicao(1);
+			revista5.setAno(2022);
+			revista5.setTitulo("História da Humanidade");
+			revista5.setEstante(5);
+			revista5.setCodigoBarras("");
+			revista5.setQtdDisponiveis(99);
+			revista5.setQtdExemplares(1);	
+			System.out.println("Calcula qtd. produto emprestado: " + revista5.CalculaQtdProdutoEmprestado());
+			RevistaController.incluir(revista5);
+		} catch (Exception e) {
+			System.out.println("[ERROR - Revista] " + e.getMessage());
+		}
 		
 	}
 

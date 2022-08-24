@@ -17,6 +17,7 @@ import br.edu.infnet.appemprestimo.model.domain.Produto;
 import br.edu.infnet.appemprestimo.model.domain.Revista;
 import br.edu.infnet.appemprestimo.model.domain.Usuario;
 import br.edu.infnet.appemprestimo.model.exceptions.CpfInvalidoException;
+import br.edu.infnet.appemprestimo.model.exceptions.EmprestimoSemProdutoException;
 import br.edu.infnet.appemprestimo.model.exceptions.UsuarioNuloException;
 
 @Component
@@ -86,8 +87,8 @@ public class EmprestimoTeste implements ApplicationRunner {
 			Emprestimo emp1 = new Emprestimo(user1,listaProdutosEmp1);
 			emp1.setDataDevolucao(null);
 			EmprestimoController.incluir(emp1);			
-		} catch (CpfInvalidoException | UsuarioNuloException e) {
-			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());	
+		} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
+			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
 		}
 		
 		try {
@@ -100,8 +101,8 @@ public class EmprestimoTeste implements ApplicationRunner {
 			Emprestimo emp2 = new Emprestimo(user2,listaProdutosEmp2);
 			emp2.setDataDevolucao(LocalDateTime.of(2022, 8, 1, 10, 42));		
 			EmprestimoController.incluir(emp2);
-		} catch (Exception e) {
-			System.out.println("[ERROR - USUARIO ] " + e.getMessage());
+		} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
+			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
 		}
 
 		try {
@@ -113,8 +114,46 @@ public class EmprestimoTeste implements ApplicationRunner {
 			Emprestimo emp3 = new Emprestimo(user3, listaProdutosEmp3);		
 			emp3.setDataDevolucao(LocalDateTime.of(2022, 6, 30, 11, 00));
 			EmprestimoController.incluir(emp3);
-		} catch (Exception e) {
-			System.out.println("[ERROR - USUARIO ] " + e.getMessage());
+		} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
+			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
+		}
+		
+		try {
+			Set<Produto> listaProdutosEmp4 = new HashSet<Produto>();		
+			listaProdutosEmp4.add(revista1);
+			
+			Usuario user4=new Usuario("Maria Helena da Silva","33333333333");
+			
+			Emprestimo emp4 = new Emprestimo(null, listaProdutosEmp4);		
+			emp4.setDataDevolucao(LocalDateTime.of(2022, 6, 30, 11, 00));
+			EmprestimoController.incluir(emp4);
+		} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
+			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
+		}
+		
+		try {
+			Set<Produto> listaProdutosEmp5 = new HashSet<Produto>();		
+					
+			Usuario user5=new Usuario("Maria Helena da Silva","33333333333");
+			
+			Emprestimo emp5 = new Emprestimo(user5, listaProdutosEmp5);		
+			emp5.setDataDevolucao(LocalDateTime.of(2022, 6, 30, 11, 00));
+			EmprestimoController.incluir(emp5);
+		} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
+			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
+		}
+		
+		
+		try {
+			Set<Produto> listaProdutosEmp6 = null;
+			
+			Usuario user6=new Usuario("Maria Helena da Silva","33333333333");
+			
+			Emprestimo emp6 = new Emprestimo(user6, listaProdutosEmp6);		
+			emp6.setDataDevolucao(LocalDateTime.of(2022, 6, 30, 11, 00));
+			EmprestimoController.incluir(emp6);
+		} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
+			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
 		}
 		
 	}
