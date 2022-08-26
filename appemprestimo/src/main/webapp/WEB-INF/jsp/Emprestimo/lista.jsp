@@ -42,6 +42,8 @@
 					<th>id</th>
 					<th>Data do Empréstimo</th>
 					<th>Data de Devolução</th>
+					<th>Usuário</th>
+					<th>Produtos</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -50,6 +52,8 @@
 						<td>${e.id}</td>
 						<td>${e.dataEmprestimo}</td>
 						<td>${e.dataDevolucao}</td>
+						<td>${e.usuario.nome}</td>
+						<td>${e.produtos.size()}</td>
 						<td><a href="/Emprestimo/${e.id}/Excluir">Excluir</a></td>
 					</tr>
 				</c:forEach>

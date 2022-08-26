@@ -122,12 +122,10 @@ public class EmprestimoTeste implements ApplicationRunner {
 			Set<Produto> listaProdutosEmp4 = new HashSet<Produto>();		
 			listaProdutosEmp4.add(revista1);
 			
-			Usuario user4=new Usuario("Maria Helena da Silva","33333333333");
-			
 			Emprestimo emp4 = new Emprestimo(null, listaProdutosEmp4);		
 			emp4.setDataDevolucao(LocalDateTime.of(2022, 6, 30, 11, 00));
 			EmprestimoController.incluir(emp4);
-		} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
+		} catch (UsuarioNuloException | EmprestimoSemProdutoException e) {
 			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
 		}
 		
