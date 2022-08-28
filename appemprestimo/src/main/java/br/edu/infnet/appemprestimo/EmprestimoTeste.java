@@ -1,5 +1,9 @@
 package br.edu.infnet.appemprestimo;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -72,88 +76,50 @@ public class EmprestimoTeste implements ApplicationRunner {
 		revista1.setQtdDisponiveis(20);
 		revista1.setQtdExemplares(20);
 		
+		String dir = "C:\\dev\\pos-live\\appemprestimo\\src\\main\\resources\\arquivos\\";
+		String arq = "Emprestimos.txt";
 		
 		try {
-			Set<Produto> listaProdutosEmp1 = new HashSet<Produto>();
-			listaProdutosEmp1.add(livro1);
-			listaProdutosEmp1.add(livro1);
-			listaProdutosEmp1.add(livro2);
-			listaProdutosEmp1.add(livro2);
-			listaProdutosEmp1.add(md1);
-			listaProdutosEmp1.add(revista1);
-			
-			Usuario user1 = new Usuario("João da Silva","11111111111");
-			
-			Emprestimo emp1 = new Emprestimo(user1,listaProdutosEmp1);
-			emp1.setDataDevolucao(null);
-			EmprestimoController.incluir(emp1);			
-		} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
-			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
+			try {
+				FileReader fileReader = new FileReader(dir+arq);
+				BufferedReader leitura = new BufferedReader(fileReader);
+				
+				String linha =leitura.readLine(); 
+				while(linha !=null) {
+					try {
+						String[] campos= linha.split(";");						
+												
+						Set<Produto> listaProdutosEmp1 = new HashSet<Produto>();
+						listaProdutosEmp1.add(livro1);
+						listaProdutosEmp1.add(livro1);
+						listaProdutosEmp1.add(livro2);
+						listaProdutosEmp1.add(livro2);
+						listaProdutosEmp1.add(md1);
+						listaProdutosEmp1.add(revista1);
+						
+						Usuario user1 = new Usuario(campos[5],campos[6]);
+						
+						Emprestimo emp1 = new Emprestimo(user1,listaProdutosEmp1);
+						emp1.setDataDevolucao(LocalDateTime.of(Integer.valueOf(campos[0]), Integer.valueOf(campos[1]), Integer.valueOf(campos[2]), Integer.valueOf(campos[3]), Integer.valueOf(campos[4])));
+						EmprestimoController.incluir(emp1);			
+					} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
+						System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
+					}
+					linha =leitura.readLine();
+				}				
+				
+				leitura.close();
+				fileReader.close();
+				
+			} catch (FileNotFoundException e) {
+				System.out.println("[ERRO] O arquivo não existe!!!"); 
+			} catch (IOException e) {
+				System.out.println("[ERRO] Problema ao fechar o arquivo!!!");
+			}	
+		} finally {
+			System.out.println("Fim da inclusão!");
 		}
-		
-		try {
-			Set<Produto> listaProdutosEmp2 = new HashSet<Produto>();
-			listaProdutosEmp2.add(livro1);
-			listaProdutosEmp2.add(md1);
 			
-			Usuario user2=new Usuario("Ana de Souza Pereira","22222222222");
-			
-			Emprestimo emp2 = new Emprestimo(user2,listaProdutosEmp2);
-			emp2.setDataDevolucao(LocalDateTime.of(2022, 8, 1, 10, 42));		
-			EmprestimoController.incluir(emp2);
-		} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
-			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
-		}
-
-		try {
-			Set<Produto> listaProdutosEmp3 = new HashSet<Produto>();		
-			listaProdutosEmp3.add(revista1);
-			
-			Usuario user3=new Usuario("Maria Helena da Silva","33333333333");
-			
-			Emprestimo emp3 = new Emprestimo(user3, listaProdutosEmp3);		
-			emp3.setDataDevolucao(LocalDateTime.of(2022, 6, 30, 11, 00));
-			EmprestimoController.incluir(emp3);
-		} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
-			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
-		}
-		
-		try {
-			Set<Produto> listaProdutosEmp4 = new HashSet<Produto>();		
-			listaProdutosEmp4.add(revista1);
-			
-			Emprestimo emp4 = new Emprestimo(null, listaProdutosEmp4);		
-			emp4.setDataDevolucao(LocalDateTime.of(2022, 6, 30, 11, 00));
-			EmprestimoController.incluir(emp4);
-		} catch (UsuarioNuloException | EmprestimoSemProdutoException e) {
-			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
-		}
-		
-		try {
-			Set<Produto> listaProdutosEmp5 = new HashSet<Produto>();		
-					
-			Usuario user5=new Usuario("Maria Helena da Silva","33333333333");
-			
-			Emprestimo emp5 = new Emprestimo(user5, listaProdutosEmp5);		
-			emp5.setDataDevolucao(LocalDateTime.of(2022, 6, 30, 11, 00));
-			EmprestimoController.incluir(emp5);
-		} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
-			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
-		}
-		
-		
-		try {
-			Set<Produto> listaProdutosEmp6 = null;
-			
-			Usuario user6=new Usuario("Maria Helena da Silva","33333333333");
-			
-			Emprestimo emp6 = new Emprestimo(user6, listaProdutosEmp6);		
-			emp6.setDataDevolucao(LocalDateTime.of(2022, 6, 30, 11, 00));
-			EmprestimoController.incluir(emp6);
-		} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
-			System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
-		}
-		
 	}
 
 }

@@ -1,0 +1,3 @@
+1980393-1;6;2011;.Net Magazine;5;;20;20;
+2357-7886;138;2021;Revista Wine - Entrevista com Julia Cavil;5;9772357788009;3;20;
+456-7890;1;2022;História da Humanidade;5;;1;1;

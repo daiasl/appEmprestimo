@@ -1,5 +1,10 @@
 package br.edu.infnet.appemprestimo;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -15,46 +20,38 @@ public class UsuarioTeste implements ApplicationRunner {
 	
 	@Override
 	public void run(ApplicationArguments args)  {
-		Usuario user1;
+		
+		String dir = "C:\\dev\\pos-live\\appemprestimo\\src\\main\\resources\\arquivos\\";
+		String arq = "Revistas.txt";
+
 		try {
-			user1 = new Usuario("João da Silva","11111111111");
-			AppImpressao.relatorio("Usuario 1", user1);
-		} catch (CpfInvalidoException e) {
-			System.out.println("[ERROR - USUARIO ] " + e.getMessage());
-		}
-		
-		Usuario user2;
-		try {
-			user2 = new Usuario("Ana de Souza Pereira","22222222222");
-			AppImpressao.relatorio("Usuario 2", user2);
-		} catch (CpfInvalidoException e) {
-			System.out.println("[ERROR - USUARIO ] " + e.getMessage());
-		}
-		
-		
-		Usuario user3;
-		try {
-			user3 = new Usuario("Maria Helena da Silva","33333333333");
-			AppImpressao.relatorio("Usuario 3", user3);
-		} catch (CpfInvalidoException e) {
-			System.out.println("[ERROR - USUARIO ] " + e.getMessage());
-		}
-		
-		
-		Usuario user4;
-		try {
-			user4 = new Usuario("Maria Silva",null);
-			AppImpressao.relatorio("Usuario 4", user4);
-		} catch (CpfInvalidoException e) {
-			System.out.println("[ERROR - USUARIO ] " + e.getMessage());
-		}
+			try {
+				FileReader fileReader = new FileReader(dir+arq);
+				BufferedReader leitura = new BufferedReader(fileReader);
 				
-		Usuario user5;
-		try {
-			user5 = new Usuario("Maria da Silva","");
-			AppImpressao.relatorio("Usuario 5", user5);
-		} catch (CpfInvalidoException e) {
-			System.out.println("[ERROR - USUARIO ] " + e.getMessage());
+				String linha =leitura.readLine(); 
+				while(linha !=null) {
+					try {
+						String[] campos= linha.split(";");	
+										
+						Usuario user1 = new Usuario(campos[0],campos[1]);
+						AppImpressao.relatorio("Usuario 1", user1);
+					} catch (CpfInvalidoException e) {
+						System.out.println("[ERROR - USUARIO ] " + e.getMessage());
+					}
+					linha =leitura.readLine();
+				}				
+				
+				leitura.close();
+				fileReader.close();
+				
+			} catch (FileNotFoundException e) {
+				System.out.println("[ERRO] O arquivo não existe!!!"); 
+			} catch (IOException e) {
+				System.out.println("[ERRO] Problema ao fechar o arquivo!!!");
+			}	
+		} finally {
+			System.out.println("Fim da inclusão!");
 		}
 		
 	}
