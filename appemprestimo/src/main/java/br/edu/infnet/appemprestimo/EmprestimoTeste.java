@@ -19,10 +19,10 @@ import br.edu.infnet.appemprestimo.model.domain.Livro;
 import br.edu.infnet.appemprestimo.model.domain.MaterialDigital;
 import br.edu.infnet.appemprestimo.model.domain.Produto;
 import br.edu.infnet.appemprestimo.model.domain.Revista;
-import br.edu.infnet.appemprestimo.model.domain.Usuario;
+import br.edu.infnet.appemprestimo.model.domain.Solicitante;
 import br.edu.infnet.appemprestimo.model.exceptions.CpfInvalidoException;
 import br.edu.infnet.appemprestimo.model.exceptions.EmprestimoSemProdutoException;
-import br.edu.infnet.appemprestimo.model.exceptions.UsuarioNuloException;
+import br.edu.infnet.appemprestimo.model.exceptions.SolicitanteNuloException;
 
 @Component
 @Order(2)
@@ -97,12 +97,12 @@ public class EmprestimoTeste implements ApplicationRunner {
 						listaProdutosEmp1.add(md1);
 						listaProdutosEmp1.add(revista1);
 						
-						Usuario user1 = new Usuario(campos[5],campos[6]);
+						Solicitante sol1 = new Solicitante(campos[5],campos[6]);
 						
-						Emprestimo emp1 = new Emprestimo(user1,listaProdutosEmp1);
+						Emprestimo emp1 = new Emprestimo(sol1,listaProdutosEmp1);
 						emp1.setDataDevolucao(LocalDateTime.of(Integer.valueOf(campos[0]), Integer.valueOf(campos[1]), Integer.valueOf(campos[2]), Integer.valueOf(campos[3]), Integer.valueOf(campos[4])));
 						EmprestimoController.incluir(emp1);			
-					} catch (CpfInvalidoException | UsuarioNuloException | EmprestimoSemProdutoException e) {
+					} catch (CpfInvalidoException | SolicitanteNuloException | EmprestimoSemProdutoException e) {
 						System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
 					}
 					linha =leitura.readLine();

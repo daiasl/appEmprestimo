@@ -35,36 +35,27 @@
 		<h2>AppEmprestimo</h2>
 		<p>Projeto de empréstimos na biblioteca.</p>
 
-		<h3>Classe: Revista</h3>
+		<h3>Classe: Solicitante</h3>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>id</th>
-					<th>Issn</th>
-					<th>Edicao</th>
-					<th>Ano</th>
-					<th>Titulo</th>
-					<th>Estante</th>
-					<th>CodigoBarras</th>
-					<th>QtdDisponiveis</th>
-					<th>QtdExemplares</th>
+					<th>nome</th>
+					<th>cpf</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="r" items="${listagemRevista}">
-					<tr>
-						<td>${r.id}</td>
-						<td>${r.issn}</td>
-						<td>${r.edicao}</td>
-						<td>${r.ano}</td>
-						<td>${r.titulo}</td>
-						<td>${r.estante}</td>
-						<td>${r.codigoBarras}</td>
-						<td>${r.qtdDisponiveis}</td>
-						<td>${r.qtdExemplares}</td>
-						<td><a href="/Revista/${r.id}/Excluir">Excluir</a></td>
-					</tr>
-				</c:forEach>
+				<tr>
+					<td>João da Silva</td>
+					<td>11111111111</td>
+				</tr>
+				<tr>
+					<td>Ana de Souza Pereira</td>
+					<td>22222222222</td>
+				</tr>
+				<tr>
+					<td>Maria Helena da Silva</td>
+					<td>33333333333</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

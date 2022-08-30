@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -32,32 +31,20 @@
 		</div>
 	</nav>
 	<div class="container mt-3">
-		<h2>AppEmprestimo</h2>
-		<p>Projeto de empréstimos na biblioteca.</p>
-
-		<h3>Classe: Usuario</h3>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>nome</th>
-					<th>cpf</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>João da Silva</td>
-					<td>11111111111</td>
-				</tr>
-				<tr>
-					<td>Ana de Souza Pereira</td>
-					<td>22222222222</td>
-				</tr>
-				<tr>
-					<td>Maria Helena da Silva</td>
-					<td>33333333333</td>
-				</tr>
-			</tbody>
-		</table>
+		<h2>Stacked form</h2>
+		<form action="/login" method="post">
+			<div class="mb-3 mt-3">
+				<label for="email">Email:</label> <input type="email"
+					class="form-control" placeholder="Entre com o seu e-mail"
+					name="email">
+			</div>
+			<div class="mb-3">
+				<label for="pwd">Password:</label> <input type="password"
+					class="form-control" placeholder="Entre com a sua senha"
+					name="senha">
+			</div>			
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
 	</div>
 </body>
 </html>

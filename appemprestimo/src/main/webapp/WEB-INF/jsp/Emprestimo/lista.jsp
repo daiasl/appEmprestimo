@@ -26,7 +26,7 @@
 				</li>
 				<li class="nav-item"><a class="nav-link"
 					href="/Emprestimo/lista">Emprestimo</a></li>
-				<li class="nav-item"><a class="nav-link" href="/Usuario/lista">Usuario</a>
+				<li class="nav-item"><a class="nav-link" href="/Solicitante/lista">Solicitante</a>
 				</li>
 			</ul>
 		</div>
@@ -42,7 +42,7 @@
 					<th>id</th>
 					<th>Data do Empréstimo</th>
 					<th>Data de Devolução</th>
-					<th>Usuário</th>
+					<th>Solicitante</th>
 					<th>Produtos</th>
 				</tr>
 			</thead>
@@ -52,7 +52,7 @@
 						<td>${e.id}</td>
 						<td>${e.dataEmprestimo}</td>
 						<td>${e.dataDevolucao}</td>
-						<td>${e.usuario.nome}</td>
+						<td>${e.solicitante.nome}</td>
 						<td>${e.produtos.size()}</td>
 						<td><a href="/Emprestimo/${e.id}/Excluir">Excluir</a></td>
 					</tr>

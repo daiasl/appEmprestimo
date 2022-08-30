@@ -1,10 +1,10 @@
 package br.edu.infnet.appemprestimo.model.exceptions;
 
-public class UsuarioNuloException extends Exception {
+public class SolicitanteNuloException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	public UsuarioNuloException(String mensagem) {
+	public SolicitanteNuloException(String mensagem) {
 		super(mensagem);
 	}
 

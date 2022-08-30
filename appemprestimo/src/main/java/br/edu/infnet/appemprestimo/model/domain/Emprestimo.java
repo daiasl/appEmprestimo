@@ -5,19 +5,19 @@ import java.util.Set;
 
 import br.edu.infnet.appemprestimo.interfaces.IPrinter;
 import br.edu.infnet.appemprestimo.model.exceptions.EmprestimoSemProdutoException;
-import br.edu.infnet.appemprestimo.model.exceptions.UsuarioNuloException;
+import br.edu.infnet.appemprestimo.model.exceptions.SolicitanteNuloException;
 
 public class Emprestimo implements IPrinter {
 	private Integer id;
 	private LocalDateTime dataEmprestimo;
 	private LocalDateTime dataDevolucao;
-	private Usuario usuario;
+	private Solicitante solicitante;
 	private Set<Produto> produtos;
 	
-	public Emprestimo(Usuario usuario, Set<Produto> produtos) throws UsuarioNuloException, EmprestimoSemProdutoException {
+	public Emprestimo(Solicitante solicitante, Set<Produto> produtos) throws SolicitanteNuloException, EmprestimoSemProdutoException {
 		
-		if(usuario == null){
-			throw new UsuarioNuloException("Não é permitido realiza empréstimo sem usuário.");
+		if(solicitante == null){
+			throw new SolicitanteNuloException("Não é permitido realiza empréstimo sem usuário.");
 		}
 		if (produtos == null) {
 			throw new EmprestimoSemProdutoException("Impossível realizar um empréstimo sem uma listagem de produtos associados!");
@@ -27,7 +27,7 @@ public class Emprestimo implements IPrinter {
 		}
 		
 		this.dataEmprestimo = LocalDateTime.now();
-		this.usuario = usuario;
+		this.solicitante = solicitante;
 		this.produtos = produtos;
 	}
 	
@@ -45,7 +45,7 @@ public class Emprestimo implements IPrinter {
 
 	@Override
 	public String toString() {		
-		return "Empréstimo: " + dataEmprestimo + ";" + dataDevolucao + ";" + usuario + ";" + produtos.size();
+		return "Empréstimo: " + dataEmprestimo + ";" + dataDevolucao + ";" + solicitante + ";" + produtos.size();
 	}
 
 	@Override
@@ -61,12 +61,12 @@ public class Emprestimo implements IPrinter {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Usuario getUsuario() {
-		return usuario;
+	public Solicitante getSolicitante() {
+		return solicitante;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setSolicitante(Solicitante solicitante) {
+		this.solicitante = solicitante;
 	}
 
 	public Set<Produto> getProdutos() {

@@ -25,7 +25,7 @@
 				</li>
 				<li class="nav-item"><a class="nav-link"
 					href="/Emprestimo/lista">Emprestimo</a></li>
-				<li class="nav-item"><a class="nav-link" href="/Usuario/lista">Usuario</a>
+				<li class="nav-item"><a class="nav-link" href="/Solicitante/lista">Solicitante</a>
 				</li>
 			</ul>
 		</div>
