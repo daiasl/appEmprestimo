@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -26,35 +25,30 @@
 				</li>
 				<li class="nav-item"><a class="nav-link"
 					href="/Emprestimo/lista">Emprestimo</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/Solicitante/lista">Solicitante</a></li>
+				<li class="nav-item"><a class="nav-link" href="/Usuario/lista">Usuario</a>
+				</li>
 			</ul>
 		</div>
 	</nav>
 	<div class="container mt-3">
-		<h2>AppEmprestimo</h2>
-		<p>Projeto de empréstimos na biblioteca.</p>
-
-		<h3>Cadastramento de Solicitante</h3>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>id</th>
-					<th>nome</th>
-					<th>cpf</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="s" items="${listagem}">
-					<tr>
-						<td>${s.id}</td>
-						<td>${s.nome}</td>
-						<td>${s.cpf}</td>
-						<td><a href="/Solicitante/${s.id}/Excluir">Excluir</a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+		<h2>Cadastramento de Usuários</h2>
+		<form action="/usuario/incluir" method="post">
+			<div class="mb-3 mt-3">
+				<label>Nome:</label> <input type="text" class="form-control"
+					placeholder="Entre com o seu nome" name="nome">
+			</div>
+			<div class="mb-3 mt-3">
+				<label for="email">Email:</label> <input type="email"
+					class="form-control" placeholder="Entre com o seu e-mail"
+					name="email">
+			</div>
+			<div class="mb-3">
+				<label for="pwd">Password:</label> <input type="password"
+					class="form-control" placeholder="Entre com a sua senha"
+					name="senha">
+			</div>
+			<button type="submit" class="btn btn-primary">Cadastrar</button>
+		</form>
 	</div>
 </body>
 </html>

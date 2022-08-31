@@ -26,8 +26,8 @@
 				</li>
 				<li class="nav-item"><a class="nav-link"
 					href="/Emprestimo/lista">Emprestimo</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/Solicitante/lista">Solicitante</a></li>
+				<li class="nav-item"><a class="nav-link" href="/Solicitante/lista">Solicitante</a>
+				</li>
 			</ul>
 		</div>
 	</nav>
@@ -35,22 +35,21 @@
 		<h2>AppEmprestimo</h2>
 		<p>Projeto de empréstimos na biblioteca.</p>
 
-		<h3>Cadastramento de Solicitante</h3>
+		<h3>Cadastramento de Usuários</h3>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>id</th>
-					<th>nome</th>
-					<th>cpf</th>
+					<th>Nome</th>
+					<th>E-mail</th>
+					<th>Senha</th>					
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="s" items="${listagem}">
+				<c:forEach var="u" items="${listagem}">
 					<tr>
-						<td>${s.id}</td>
-						<td>${s.nome}</td>
-						<td>${s.cpf}</td>
-						<td><a href="/Solicitante/${s.id}/Excluir">Excluir</a></td>
+						<td>${u.nome}</td>
+						<td>${u.email}</td>
+						<td>${u.senha}</td>						
 					</tr>
 				</c:forEach>
 			</tbody>

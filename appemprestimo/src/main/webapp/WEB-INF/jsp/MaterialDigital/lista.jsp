@@ -35,7 +35,7 @@
 		<h2>AppEmprestimo</h2>
 		<p>Projeto de empréstimos na biblioteca.</p>
 
-		<h3>Classe: MaterialDigital</h3>
+		<h3>Cadastramento de Material Digital</h3>
 		<table class="table table-striped">
 			<thead>
 				<tr>

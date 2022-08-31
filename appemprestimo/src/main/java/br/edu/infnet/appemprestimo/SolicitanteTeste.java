@@ -10,9 +10,9 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.appemprestimo.controller.SolicitanteController;
 import br.edu.infnet.appemprestimo.model.domain.Solicitante;
 import br.edu.infnet.appemprestimo.model.exceptions.CpfInvalidoException;
-import br.edu.infnet.appemprestimo.model.test.AppImpressao;
 
 @Component
 @Order(1)
@@ -35,7 +35,8 @@ public class SolicitanteTeste implements ApplicationRunner {
 						String[] campos= linha.split(";");	
 										
 						Solicitante sol1 = new Solicitante(campos[0],campos[1]);
-						AppImpressao.relatorio("Solicitante ", sol1);
+						SolicitanteController.incluir(sol1);
+						
 					} catch (CpfInvalidoException e) {
 						System.out.println("[ERROR - Solicitante ] " + e.getMessage());
 					}

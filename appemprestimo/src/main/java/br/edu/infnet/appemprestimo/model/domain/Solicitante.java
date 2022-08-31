@@ -4,7 +4,14 @@ import br.edu.infnet.appemprestimo.interfaces.IPrinter;
 import br.edu.infnet.appemprestimo.model.exceptions.CpfInvalidoException;
 
 public class Solicitante implements IPrinter{
-		
+	private Integer id;
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	private String nome;
 	private String cpf;
 	
