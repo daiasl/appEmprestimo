@@ -11,30 +11,8 @@
 <title>AppEmprestimo</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-sm bg-light navbar-light">
-		<div class="container-fluid">
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link active" href="/">Home</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="/Livro/lista">Livro</a>
-				</li>
-				<li class="nav-item"><a class="nav-link"
-					href="/MaterialDigital/lista">Material Digital</a></li>
-				<li class="nav-item"><a class="nav-link" href="/Revista/lista">Revista</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="/Produto/lista">Produto</a>
-				</li>
-				<li class="nav-item"><a class="nav-link"
-					href="/Emprestimo/lista">Emprestimo</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/Solicitante/lista">Solicitante</a></li>
-			</ul>
-		</div>
-	</nav>
+	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 	<div class="container mt-3">
-		<h2>AppEmprestimo</h2>
-		<p>Projeto de empréstimos na biblioteca.</p>
-
 		<h3>Cadastramento de Solicitante</h3>
 		<table class="table table-striped">
 			<thead>
@@ -42,6 +20,7 @@
 					<th>id</th>
 					<th>nome</th>
 					<th>cpf</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
