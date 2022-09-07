@@ -1,42 +1,38 @@
 package br.edu.infnet.appemprestimo.controller;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.appemprestimo.model.domain.MaterialDigital;
-import br.edu.infnet.appemprestimo.model.test.AppImpressao;
+import br.edu.infnet.appemprestimo.model.service.MaterialDigitalService;
 
 @Controller
 public class MaterialDigitalController {
-	private static Map<Integer, MaterialDigital> mapaMaterialDigital = new HashMap<Integer, MaterialDigital>();	
-	private static Integer id=1; 	
-
-	public static void incluir(MaterialDigital materialDigital) {			
-		materialDigital.setId(id++);
-		mapaMaterialDigital.put(materialDigital.getId(), materialDigital);		
-		AppImpressao.relatorio("Inclusão do Material Digital "+ materialDigital.getTitulo() +" realizada com sucesso. ", materialDigital);
-	}
-	public static Collection<MaterialDigital> obterLista() {
-		return mapaMaterialDigital.values();
-	}	
-	public static void excluir(Integer id){
-		mapaMaterialDigital.remove(id);
-	}
+	@Autowired
+	private MaterialDigitalService mdService;
 		
 	@GetMapping(value= "/MaterialDigital/lista")
 	public String telaLista(Model model){
-		model.addAttribute("listagemMaterialDigital",obterLista());		
+		model.addAttribute("listagemMaterialDigital",mdService.obterLista());		
 		return "/MaterialDigital/lista";
 	}	
+	@GetMapping(value= "/MaterialDigital")
+	public String telaCadastro(){				
+		return "/MaterialDigital/cadastro";
+	}
+
+	@PostMapping(value= "/MaterialDigital/Incluir")
+	public String incluir(MaterialDigital materialDigital){				
+		mdService.incluir(materialDigital);	
+		return "redirect:/";
+	}
 	@GetMapping(value="/MaterialDigital/{id}/Excluir")
 	public String exclusao(@PathVariable Integer id) {
-		excluir(id);
+		mdService.excluir(id);
 		return "redirect:/MaterialDigital/lista";
 	}
 }

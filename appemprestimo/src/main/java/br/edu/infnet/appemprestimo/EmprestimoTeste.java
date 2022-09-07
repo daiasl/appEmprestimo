@@ -8,12 +8,12 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appemprestimo.controller.EmprestimoController;
 import br.edu.infnet.appemprestimo.model.domain.Emprestimo;
 import br.edu.infnet.appemprestimo.model.domain.Livro;
 import br.edu.infnet.appemprestimo.model.domain.MaterialDigital;
@@ -23,11 +23,14 @@ import br.edu.infnet.appemprestimo.model.domain.Solicitante;
 import br.edu.infnet.appemprestimo.model.exceptions.CpfInvalidoException;
 import br.edu.infnet.appemprestimo.model.exceptions.EmprestimoSemProdutoException;
 import br.edu.infnet.appemprestimo.model.exceptions.SolicitanteNuloException;
+import br.edu.infnet.appemprestimo.model.service.EmprestimoService;
 
 @Component
 @Order(2)
 public class EmprestimoTeste implements ApplicationRunner {
-
+	@Autowired
+	private EmprestimoService emprestimoService;
+	
 	@Override
 	public void run(ApplicationArguments args) {
 		
@@ -101,7 +104,7 @@ public class EmprestimoTeste implements ApplicationRunner {
 						
 						Emprestimo emp1 = new Emprestimo(sol1,listaProdutosEmp1);
 						emp1.setDataDevolucao(LocalDateTime.of(Integer.valueOf(campos[0]), Integer.valueOf(campos[1]), Integer.valueOf(campos[2]), Integer.valueOf(campos[3]), Integer.valueOf(campos[4])));
-						EmprestimoController.incluir(emp1);			
+						emprestimoService.incluir(emp1);			
 					} catch (CpfInvalidoException | SolicitanteNuloException | EmprestimoSemProdutoException e) {
 						System.out.println("[ERROR - Emprestimo ] " + e.getMessage());
 					}

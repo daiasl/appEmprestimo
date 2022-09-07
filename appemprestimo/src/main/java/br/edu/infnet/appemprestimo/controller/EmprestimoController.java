@@ -1,43 +1,40 @@
 package br.edu.infnet.appemprestimo.controller;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.appemprestimo.model.domain.Emprestimo;
-import br.edu.infnet.appemprestimo.model.test.AppImpressao;
+import br.edu.infnet.appemprestimo.model.service.EmprestimoService;
 
 @Controller
 public class EmprestimoController {
-	
-	private static Map<Integer, Emprestimo> mapaEmprestimo = new HashMap<Integer, Emprestimo>();
-	private static Integer id=1; 	
-
-	public static void incluir(Emprestimo emprestimo) {			
-		emprestimo.setId(id++);
-		mapaEmprestimo.put(emprestimo.getId(), emprestimo);		
-		AppImpressao.relatorio("Empréstimo realizado com sucesso.", emprestimo);
-	}
-	public static Collection<Emprestimo> obterLista() {
-		return mapaEmprestimo.values();
-	}	
-	public static void excluir(Integer id){
-		mapaEmprestimo.remove(id);
-	}
+	@Autowired
+	private EmprestimoService emprestimoService;
 		
 	@GetMapping(value= "/Emprestimo/lista")
 	public String telaLista(Model model){
-		model.addAttribute("listagemEmprestimo",obterLista());		
+		model.addAttribute("listagemEmprestimo",emprestimoService.obterLista());		
 		return "/Emprestimo/lista";
 	}	
+	
+	@GetMapping(value= "/Emprestimo")
+	public String telaCadastro(){				
+		return "/Emprestimo/cadastro";
+	}
+
+	@PostMapping(value= "/Emprestimo/Incluir")
+	public String incluir(Emprestimo Emprestimo){				
+		emprestimoService.incluir(Emprestimo);	
+		return "redirect:/";
+	}
+	
 	@GetMapping(value="/Emprestimo/{id}/Excluir")
 	public String exclusao(@PathVariable Integer id) {
-		excluir(id);
+		emprestimoService.excluir(id);
 		return "redirect:/Emprestimo/lista";
 	}
 }

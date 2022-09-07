@@ -5,18 +5,21 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appemprestimo.controller.RevistaController;
 import br.edu.infnet.appemprestimo.model.domain.Revista;
+import br.edu.infnet.appemprestimo.model.service.RevistaService;
 
 @Component
 @Order(4)
 public class RevistaTeste implements ApplicationRunner {
-
+	@Autowired
+	private RevistaService revistaService;
+	
 	@Override
 	public void run(ApplicationArguments args) {
 		
@@ -43,7 +46,7 @@ public class RevistaTeste implements ApplicationRunner {
 						revista1.setQtdDisponiveis(Integer.valueOf(campos[6]));
 						revista1.setQtdExemplares(Integer.valueOf(campos[7]));	
 						System.out.println("Calcula qtd. produto emprestado: " + revista1.CalculaQtdProdutoEmprestado());
-						RevistaController.incluir(revista1);
+						revistaService.incluir(revista1);
 					} catch (Exception e) {
 						System.out.println("[ERROR - Revista] " + e.getMessage());
 					}

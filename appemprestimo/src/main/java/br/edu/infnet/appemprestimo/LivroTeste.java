@@ -5,19 +5,22 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appemprestimo.controller.LivroController;
 import br.edu.infnet.appemprestimo.model.domain.Livro;
 import br.edu.infnet.appemprestimo.model.exceptions.AnoPublicacaoInvalidoException;
+import br.edu.infnet.appemprestimo.model.service.LivroService;
 
 @Component
 @Order(3)
 public class LivroTeste implements ApplicationRunner {
-
+	@Autowired
+	private LivroService livroService;
+	
 	@Override
 	public void run(ApplicationArguments args) {
 		
@@ -46,7 +49,7 @@ public class LivroTeste implements ApplicationRunner {
 						livro1.setQtdDisponiveis(Integer.valueOf(campos[8]));
 						livro1.setQtdExemplares(Integer.valueOf(campos[9]));
 						System.out.println("Calcula qtd. produto emprestado: " + livro1.CalculaQtdProdutoEmprestado());
-						LivroController.incluir(livro1);
+						livroService.incluir(livro1);
 					} catch (AnoPublicacaoInvalidoException e) {
 						System.out.println("[ERROR - Livro] " + e.getMessage());
 					}

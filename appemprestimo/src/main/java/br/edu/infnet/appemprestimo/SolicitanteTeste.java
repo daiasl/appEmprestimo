@@ -5,19 +5,22 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appemprestimo.controller.SolicitanteController;
 import br.edu.infnet.appemprestimo.model.domain.Solicitante;
 import br.edu.infnet.appemprestimo.model.exceptions.CpfInvalidoException;
+import br.edu.infnet.appemprestimo.model.service.SolicitanteService;
 
 @Component
 @Order(1)
 public class SolicitanteTeste implements ApplicationRunner {
-	
+	@Autowired
+	private SolicitanteService solicitanteService;
+		
 	@Override
 	public void run(ApplicationArguments args)  {
 		
@@ -35,7 +38,7 @@ public class SolicitanteTeste implements ApplicationRunner {
 						String[] campos= linha.split(";");	
 										
 						Solicitante sol1 = new Solicitante(campos[0],campos[1]);
-						SolicitanteController.incluir(sol1);
+						solicitanteService.incluir(sol1);
 						
 					} catch (CpfInvalidoException e) {
 						System.out.println("[ERROR - Solicitante ] " + e.getMessage());

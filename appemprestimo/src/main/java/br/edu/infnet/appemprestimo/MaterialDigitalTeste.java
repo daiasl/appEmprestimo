@@ -5,18 +5,21 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.appemprestimo.controller.MaterialDigitalController;
 import br.edu.infnet.appemprestimo.model.domain.MaterialDigital;
+import br.edu.infnet.appemprestimo.model.service.MaterialDigitalService;
 
 @Component
 @Order(5)
 public class MaterialDigitalTeste implements ApplicationRunner {
-
+	@Autowired
+	private MaterialDigitalService mdService;
+	
 	@Override
 	public void run(ApplicationArguments args) {
 
@@ -44,7 +47,7 @@ public class MaterialDigitalTeste implements ApplicationRunner {
 						md1.setQtdDisponiveis(Integer.valueOf(campos[7]));
 						md1.setQtdExemplares(Integer.valueOf(campos[8]));
 						System.out.println("Calcula qtd. produto emprestado: " + md1.CalculaQtdProdutoEmprestado());
-						MaterialDigitalController.incluir(md1);
+						mdService.incluir(md1);
 					} catch (Exception e) {
 						System.out.println("[ERROR - Material Digital] " + e.getMessage());
 					}

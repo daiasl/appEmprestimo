@@ -29,7 +29,7 @@
 
 			<ul class="navbar-nav">
 				<c:if test="${empty user}">
-					<li class="nav-item"><a class="nav-link" href="/Usuario">Signup</a></li>
+					<li class="nav-item"><a class="nav-link" href="/Usuario">Signup</a></li>					
 					<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 				</c:if>
 				<c:if test="${not empty user}">
