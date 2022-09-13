@@ -11,7 +11,7 @@
 <title>AppEmprestimo</title>
 </head>
 <body>
-	<c:import url="/WEB-INF/jsp/menu.jsp" />
+	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 	<div class="container mt-3">
 		<h2>${projeto.nome}</h2>
 		<p>${projeto.descricao}</p>

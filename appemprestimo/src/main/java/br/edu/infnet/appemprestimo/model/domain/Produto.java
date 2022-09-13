@@ -16,12 +16,7 @@ public abstract class Produto implements IPrinter{
 	private int qtdDisponiveis;
 	
 	public abstract int CalculaQtdProdutoEmprestado() throws AnoPublicacaoInvalidoException, QuantidadeExemplaresZeradoNegativoException, QuantidadeIncorretaException;
-	
-	/*public int CalculaQtdProdutoEmprestado() {
-		System.out.println("Calcula qtd produtos emprestados - mãe:");
-		return qtdExemplares - qtdDisponiveis;
-	}*/
-	
+			
 	public String getTitulo() {
 		return titulo;
 	}

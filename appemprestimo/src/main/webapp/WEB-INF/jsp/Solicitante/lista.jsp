@@ -14,6 +14,9 @@
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 	<div class="container mt-3">
 		<h3>Cadastramento de Solicitantes</h3>
+		
+		<h4><a href="/Solicitante">Novo cadastro</a></h4>
+		
 		<table class="table table-striped">
 			<thead>
 				<tr>
