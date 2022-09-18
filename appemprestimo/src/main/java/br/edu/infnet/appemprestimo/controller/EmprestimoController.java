@@ -9,11 +9,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.appemprestimo.model.domain.Emprestimo;
 import br.edu.infnet.appemprestimo.model.service.EmprestimoService;
+import br.edu.infnet.appemprestimo.model.service.ProdutoService;
+import br.edu.infnet.appemprestimo.model.service.SolicitanteService;
 
 @Controller
 public class EmprestimoController {
 	@Autowired
 	private EmprestimoService emprestimoService;
+	@Autowired
+	private SolicitanteService solicitanteService;
+	@Autowired
+	private ProdutoService produtoService;
 		
 	@GetMapping(value= "/Emprestimo/lista")
 	public String telaLista(Model model){
@@ -22,13 +28,15 @@ public class EmprestimoController {
 	}	
 	
 	@GetMapping(value= "/Emprestimo")
-	public String telaCadastro(){				
+	public String telaCadastro(Model model){
+		model.addAttribute("listagemSolicitantes",solicitanteService.obterLista());
+		model.addAttribute("listagemProdutos",produtoService.obterLista());
 		return "/Emprestimo/cadastro";
 	}
 
 	@PostMapping(value= "/Emprestimo/Incluir")
-	public String incluir(Emprestimo Emprestimo){				
-		emprestimoService.incluir(Emprestimo);	
+	public String incluir(Emprestimo emprestimo){				
+		emprestimoService.incluir(emprestimo);	
 		return "redirect:/";
 	}
 	

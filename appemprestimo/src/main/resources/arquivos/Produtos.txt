@@ -1,12 +1,9 @@
-E;2022;7;12;09;54;João da Silva;11111111111;
 L;987-85-508-1500-8;1;1;2020;Robert C. Martin;Desenvolvimento de Software Ágil;1;9788550815008;5;6;
 L;987-5-01-30451-3;1;2;2022;Kate Quinn;A Rede de Alice;2;978850304513;3;10;
-M;10.1590/S1415;1998;1;https://doi.org/10.1590/S1415-65551998000300009;Sistemas de Informação no Brasil: uma análise dos artigos científicos dos anos 90;4;;1;1;
-E;2022;8;1;10;42;Ana de Souza Pereira;22222222222;
 L;987-65-5564-024-3;1;1;2020;Daiana Garbin;A vida perfeita não existe;3;9786555640243;2;2;
+M;10.1590/S1415;1998;1;https://doi.org/10.1590/S1415-65551998000300009;Sistemas de Informação no Brasil: uma análise dos artigos científicos dos anos 90;4;;1;1;
 M;10.1590/S0100;2008;1;https://doi.org/10.1590/S0100-19652008000300003;As redes cognitivas na ciência da informação brasileira: um estudo nos artigos científicos publicados nos periódicos da área;4;;1;1;
-R;1980393-1;6;2011;.Net Magazine;5;;20;20;
-E;2022;6;30;11;00;Maria Helena da Silva;33333333333;
 M;10.1590/1413;2022;1;https://doi.org/10.1590/1413-81232022271.22562019;Perspectivas acerca do conceito de saúde mental: análise das produções científicas brasileiras;4;;1;1;
+R;1980393-1;6;2011;.Net Magazine;5;;20;20;
 R;2357-7886;138;2021;Revista Wine - Entrevista com Julia Cavil;5;9772357788009;3;20;
 R;456-7890;1;2022;História da Humanidade;5;;1;1;

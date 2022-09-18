@@ -24,7 +24,7 @@ public class MaterialDigitalTeste implements ApplicationRunner {
 	public void run(ApplicationArguments args) {
 
 		String dir = "C:\\dev\\pos-live\\appemprestimo\\src\\main\\resources\\arquivos\\";
-		String arq = "MateriaisDigitais.txt";
+		String arq = "Produtos.txt";
 
 		try {
 			try {
@@ -33,24 +33,26 @@ public class MaterialDigitalTeste implements ApplicationRunner {
 				
 				String linha =leitura.readLine(); 
 				while(linha !=null) {
-					try {
-						String[] campos= linha.split(";");	
-						
-						MaterialDigital md1 = new MaterialDigital();
-						md1.setDoi(campos[0]);
-						md1.setAno(Integer.valueOf(campos[1]));
-						md1.setVolume(Integer.valueOf(campos[2]));
-						md1.setLinkDoi(campos[3]);
-						md1.setTitulo(campos[4]);
-						md1.setEstante(Integer.valueOf(campos[5]));
-						md1.setCodigoBarras(campos[6]);
-						md1.setQtdDisponiveis(Integer.valueOf(campos[7]));
-						md1.setQtdExemplares(Integer.valueOf(campos[8]));
-						System.out.println("Calcula qtd. produto emprestado: " + md1.CalculaQtdProdutoEmprestado());
-						mdService.incluir(md1);
-					} catch (Exception e) {
-						System.out.println("[ERROR - Material Digital] " + e.getMessage());
-					}
+					String[] campos= linha.split(";");
+					
+					if ("M".equalsIgnoreCase(campos[0])) {
+						try {
+							MaterialDigital md1 = new MaterialDigital();
+							md1.setDoi(campos[1]);
+							md1.setAno(Integer.valueOf(campos[2]));
+							md1.setVolume(Integer.valueOf(campos[3]));
+							md1.setLinkDoi(campos[4]);
+							md1.setTitulo(campos[5]);
+							md1.setEstante(Integer.valueOf(campos[6]));
+							md1.setCodigoBarras(campos[7]);
+							md1.setQtdDisponiveis(Integer.valueOf(campos[8]));
+							md1.setQtdExemplares(Integer.valueOf(campos[9]));
+							System.out.println("Calcula qtd. produto emprestado: " + md1.CalculaQtdProdutoEmprestado());
+							mdService.incluir(md1);
+						} catch (Exception e) {
+							System.out.println("[ERROR - Material Digital] " + e.getMessage());
+						}	
+					}					
 					linha =leitura.readLine();
 				}				
 				

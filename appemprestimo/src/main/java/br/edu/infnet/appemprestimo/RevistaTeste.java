@@ -24,7 +24,7 @@ public class RevistaTeste implements ApplicationRunner {
 	public void run(ApplicationArguments args) {
 		
 		String dir = "C:\\dev\\pos-live\\appemprestimo\\src\\main\\resources\\arquivos\\";
-		String arq = "Revistas.txt";
+		String arq = "Produtos.txt";
 
 		try {
 			try {
@@ -33,23 +33,25 @@ public class RevistaTeste implements ApplicationRunner {
 				
 				String linha =leitura.readLine(); 
 				while(linha !=null) {
-					try {
-						String[] campos= linha.split(";");	
-										
-						Revista revista1=new Revista();
-						revista1.setIssn(campos[0]);
-						revista1.setEdicao(Integer.valueOf(campos[1]));
-						revista1.setAno(Integer.valueOf(campos[2]));
-						revista1.setTitulo(campos[3]);
-						revista1.setEstante(Integer.valueOf(campos[4]));
-						revista1.setCodigoBarras(campos[5]);
-						revista1.setQtdDisponiveis(Integer.valueOf(campos[6]));
-						revista1.setQtdExemplares(Integer.valueOf(campos[7]));	
-						System.out.println("Calcula qtd. produto emprestado: " + revista1.CalculaQtdProdutoEmprestado());
-						revistaService.incluir(revista1);
-					} catch (Exception e) {
-						System.out.println("[ERROR - Revista] " + e.getMessage());
-					}
+					String[] campos= linha.split(";");
+				
+					if ("R".equalsIgnoreCase(campos[0])) {
+						try {
+							Revista revista1=new Revista();
+							revista1.setIssn(campos[1]);
+							revista1.setEdicao(Integer.valueOf(campos[2]));
+							revista1.setAno(Integer.valueOf(campos[3]));
+							revista1.setTitulo(campos[4]);
+							revista1.setEstante(Integer.valueOf(campos[5]));
+							revista1.setCodigoBarras(campos[6]);
+							revista1.setQtdDisponiveis(Integer.valueOf(campos[7]));
+							revista1.setQtdExemplares(Integer.valueOf(campos[8]));	
+							System.out.println("Calcula qtd. produto emprestado: " + revista1.CalculaQtdProdutoEmprestado());
+							revistaService.incluir(revista1);
+						} catch (Exception e) {
+							System.out.println("[ERROR - Revista] " + e.getMessage());
+						}	
+					}					
 					linha =leitura.readLine();
 				}				
 				

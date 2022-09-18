@@ -20,53 +20,57 @@ import br.edu.infnet.appemprestimo.model.service.LivroService;
 public class LivroTeste implements ApplicationRunner {
 	@Autowired
 	private LivroService livroService;
-	
+
 	@Override
 	public void run(ApplicationArguments args) {
-		
+
 		String dir = "C:\\dev\\pos-live\\appemprestimo\\src\\main\\resources\\arquivos\\";
-		String arq = "Livros.txt";
-		
+		String arq = "Produtos.txt";
+
 		try {
 			try {
-				FileReader fileReader = new FileReader(dir+arq);
+				FileReader fileReader = new FileReader(dir + arq);
 				BufferedReader leitura = new BufferedReader(fileReader);
-				
-				String linha =leitura.readLine(); 
-				while(linha !=null) {
-					try {
-						String[] campos= linha.split(";");	
-						
-						Livro livro1 = new Livro();
-						livro1.setIsbn(campos[0]);
-						livro1.setVolume(Integer.valueOf(campos[1]));
-						livro1.setEdicao(Integer.valueOf(campos[2]));
-						livro1.setAnoPublicacao(Integer.valueOf(campos[3]));
-						livro1.setNomeAutor(campos[4]);
-						livro1.setTitulo(campos[5]);
-						livro1.setEstante(Integer.valueOf(campos[6]));
-						livro1.setCodigoBarras(campos[7]);
-						livro1.setQtdDisponiveis(Integer.valueOf(campos[8]));
-						livro1.setQtdExemplares(Integer.valueOf(campos[9]));
-						System.out.println("Calcula qtd. produto emprestado: " + livro1.CalculaQtdProdutoEmprestado());
-						livroService.incluir(livro1);
-					} catch (AnoPublicacaoInvalidoException e) {
-						System.out.println("[ERROR - Livro] " + e.getMessage());
+
+				String linha = leitura.readLine();
+				while (linha != null) {
+
+					String[] campos = linha.split(";");
+
+					if ("L".equalsIgnoreCase(campos[0])) {
+						try {
+							Livro livro = new Livro();
+							livro.setIsbn(campos[1]);
+							livro.setVolume(Integer.valueOf(campos[2]));
+							livro.setEdicao(Integer.valueOf(campos[3]));
+							livro.setAnoPublicacao(Integer.valueOf(campos[4]));
+							livro.setNomeAutor(campos[5]);
+							livro.setTitulo(campos[6]);
+							livro.setEstante(Integer.valueOf(campos[7]));
+							livro.setCodigoBarras(campos[8]);
+							livro.setQtdDisponiveis(Integer.valueOf(campos[9]));
+							livro.setQtdExemplares(Integer.valueOf(campos[10]));
+							System.out.println(
+									"Calcula qtd. produto emprestado: " + livro.CalculaQtdProdutoEmprestado());
+							livroService.incluir(livro);
+						} catch (AnoPublicacaoInvalidoException e) {
+							System.out.println("[ERROR - Livro] " + e.getMessage());
+						}
 					}
-					linha =leitura.readLine();
-				}				
-				
+					linha = leitura.readLine();
+				}
+
 				leitura.close();
 				fileReader.close();
-				
+
 			} catch (FileNotFoundException e) {
-				System.out.println("[ERRO] O arquivo não existe!!!"); 
+				System.out.println("[ERRO] O arquivo não existe!!!");
 			} catch (IOException e) {
 				System.out.println("[ERRO] Problema ao fechar o arquivo!!!");
-			}	
+			}
 		} finally {
 			System.out.println("Fim da inclusão!");
-		}			
+		}
 
 	}
 

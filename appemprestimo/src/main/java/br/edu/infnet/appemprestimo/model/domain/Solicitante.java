@@ -3,7 +3,12 @@ package br.edu.infnet.appemprestimo.model.domain;
 import br.edu.infnet.appemprestimo.interfaces.IPrinter;
 import br.edu.infnet.appemprestimo.model.exceptions.CpfInvalidoException;
 
+//@Entity
+//@Table(name="TSolicitante")
 public class Solicitante implements IPrinter{
+	
+	//@Id
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	public Integer getId() {
 		return id;
@@ -14,6 +19,10 @@ public class Solicitante implements IPrinter{
 
 	private String nome;
 	private String cpf;
+	
+	public Solicitante() {
+	
+	}
 	
 	public Solicitante(String nome, String cpf) throws CpfInvalidoException {	
 		if(cpf == null) {
