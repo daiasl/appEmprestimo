@@ -26,7 +26,7 @@ public class Emprestimo implements IPrinter {
 		//	throw new EmprestimoSemProdutoException("Impossível realizar um empréstimo com menos de um produto!");
 		//}
 		
-		this.dataEmprestimo = LocalDateTime.now();
+		this.dataEmprestimo = LocalDateTime.now();		
 		this.solicitante = solicitante;
 		this.produtos = produtos;
 	}

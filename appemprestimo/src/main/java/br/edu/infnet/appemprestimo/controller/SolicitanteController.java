@@ -29,11 +29,11 @@ public class SolicitanteController {
 	@PostMapping(value= "/Solicitante/Incluir")
 	public String incluir(Solicitante solicitante){				
 		solicitanteService.incluir(solicitante);		
-		return "redirect:/";
+		return "redirect:/Solicitante/lista";
 	}
 	
 	@GetMapping(value="/Solicitante/{id}/Excluir")
-	public String exclusao(@PathVariable Integer id) {
+	public String excluir(@PathVariable Integer id) {
 		solicitanteService.excluir(id);
 		return "redirect:/Solicitante/lista";
 	}

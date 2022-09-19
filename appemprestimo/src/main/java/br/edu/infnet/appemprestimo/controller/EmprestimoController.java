@@ -29,19 +29,19 @@ public class EmprestimoController {
 	
 	@GetMapping(value= "/Emprestimo")
 	public String telaCadastro(Model model){
-		model.addAttribute("listagemSolicitantes",solicitanteService.obterLista());
-		model.addAttribute("listagemProdutos",produtoService.obterLista());
+		model.addAttribute("solicitantes",solicitanteService.obterLista());
+		model.addAttribute("produtos",produtoService.obterLista());
 		return "/Emprestimo/cadastro";
 	}
 
 	@PostMapping(value= "/Emprestimo/Incluir")
-	public String incluir(Emprestimo emprestimo){				
-		emprestimoService.incluir(emprestimo);	
-		return "redirect:/";
+	public String incluir(){				
+		//emprestimoService.incluir(emprestimo);	
+		return "redirect:/Emprestimo/lista";
 	}
 	
 	@GetMapping(value="/Emprestimo/{id}/Excluir")
-	public String exclusao(@PathVariable Integer id) {
+	public String excluir(@PathVariable Integer id) {
 		emprestimoService.excluir(id);
 		return "redirect:/Emprestimo/lista";
 	}
