@@ -45,5 +45,6 @@ public class EmprestimoController {
 		emprestimoService.excluir(id);
 		return "redirect:/Emprestimo/lista";
 	}
+		
 }
 
