@@ -1,14 +1,20 @@
 package br.edu.infnet.appemprestimo.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import br.edu.infnet.appemprestimo.interfaces.IPrinter;
 import br.edu.infnet.appemprestimo.model.exceptions.CpfInvalidoException;
 
-//@Entity
-//@Table(name="TSolicitante")
+@Entity
+@Table(name="TSolicitante")
 public class Solicitante implements IPrinter{
 	
-	//@Id
-	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	public Integer getId() {
 		return id;
@@ -21,7 +27,6 @@ public class Solicitante implements IPrinter{
 	private String cpf;
 	
 	public Solicitante() {
-	
 	}
 	
 	public Solicitante(String nome, String cpf) throws CpfInvalidoException {	

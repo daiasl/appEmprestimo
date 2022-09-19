@@ -14,27 +14,23 @@
 	<c:import url="/WEB-INF/jsp/menu.jsp" />
 	<div class="container mt-3">
 		<h2>Cadastramento de Empréstimos</h2>
-		<form action="/Emprestimo/Incluir" method="post">
-			<div class="mb-3 mt-3">
-				<label>Data do Empréstimo:</label> <input type="datetime-local"
-					class="form-control" placeholder="Entre com a data de empréstimo"
-					name="dataEmprestimo">
-			</div>
+		<form action="/Emprestimo/Incluir" method="post">			
 			<div class="mb-3 mt-3">
 				<label>Data de Devolução:</label> <input type="datetime-local"
 					class="form-control" placeholder="Entre com a data de devolução"
 					name="dataDevolucao">
 			</div>
 			<div class="mb-3">
-				<label>Solicitante:</label> <select class="form-control" id="sel1">
-					<c:forEach var="s" items="${listagemSolicitantes}">
-						<option>${s.nome}</option>
+				<label>Solicitante:</label> 
+				<select class="form-control" id="sel1">
+					<c:forEach var="s" items="${solicitantes}">					
+						<option>${s.nome}</option>						
 					</c:forEach>
 				</select>
 			</div>
 			<div class="mb-3">
 				<label>Produtos:</label>
-				<c:forEach var="p" items="${listagemProdutos}">
+				<c:forEach var="p" items="${produtos}">
 					<div class="checkbox">
 						<label><input type="checkbox" value="">${p.titulo}</label>
 					</div>
