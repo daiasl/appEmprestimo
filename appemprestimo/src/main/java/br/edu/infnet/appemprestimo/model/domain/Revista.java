@@ -1,7 +1,12 @@
 package br.edu.infnet.appemprestimo.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.edu.infnet.appemprestimo.model.exceptions.QuantidadeIncorretaException;
 
+@Entity
+@Table(name="TRevista")
 public class Revista extends Produto {
 	private String issn;	
 	private int edicao;	

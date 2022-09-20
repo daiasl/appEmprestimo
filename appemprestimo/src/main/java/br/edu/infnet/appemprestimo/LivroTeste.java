@@ -16,7 +16,7 @@ import br.edu.infnet.appemprestimo.model.exceptions.AnoPublicacaoInvalidoExcepti
 import br.edu.infnet.appemprestimo.model.service.LivroService;
 
 @Component
-@Order(3)
+@Order(4)
 public class LivroTeste implements ApplicationRunner {
 	@Autowired
 	private LivroService livroService;

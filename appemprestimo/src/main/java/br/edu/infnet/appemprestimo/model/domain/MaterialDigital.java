@@ -1,7 +1,12 @@
 package br.edu.infnet.appemprestimo.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.edu.infnet.appemprestimo.model.exceptions.QuantidadeExemplaresZeradoNegativoException;
 
+@Entity
+@Table(name="TMaterialDigital")
 public class MaterialDigital extends Produto {
 	
 	private String doi;	

@@ -12,11 +12,12 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appemprestimo.model.domain.Solicitante;
+import br.edu.infnet.appemprestimo.model.domain.Usuario;
 import br.edu.infnet.appemprestimo.model.exceptions.CpfInvalidoException;
 import br.edu.infnet.appemprestimo.model.service.SolicitanteService;
 
 @Component
-@Order(1)
+@Order(2)
 public class SolicitanteTeste implements ApplicationRunner {
 	@Autowired
 	private SolicitanteService solicitanteService;
@@ -24,6 +25,9 @@ public class SolicitanteTeste implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args)  {
 		
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
+				
 		String dir = "C:\\dev\\pos-live\\appemprestimo\\src\\main\\resources\\arquivos\\";
 		String arq = "Solicitantes.txt";
 
@@ -37,8 +41,10 @@ public class SolicitanteTeste implements ApplicationRunner {
 					try {
 						String[] campos= linha.split(";");	
 										
-						Solicitante sol1 = new Solicitante(campos[0],campos[1]);
-						solicitanteService.incluir(sol1);
+						Solicitante solicitante = new Solicitante(campos[0],campos[1]);
+						solicitante.setUsuario(usuario);
+						
+						solicitanteService.incluir(solicitante);
 						
 					} catch (CpfInvalidoException e) {
 						System.out.println("[ERROR - Solicitante ] " + e.getMessage());

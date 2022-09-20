@@ -1,28 +1,32 @@
 package br.edu.infnet.appemprestimo.model.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appemprestimo.model.domain.Solicitante;
+import br.edu.infnet.appemprestimo.model.domain.Usuario;
+import br.edu.infnet.appemprestimo.model.repository.SolicitanteRepository;
 import br.edu.infnet.appemprestimo.model.test.AppImpressao;
 
 @Service
 public class SolicitanteService {
-	private static Map<Integer, Solicitante> mapaSolicitante = new HashMap<Integer, Solicitante>();
-	private static Integer id=1; 	
 	
-	public void incluir(Solicitante solicitante) {			
-		solicitante.setId(id++);
-		mapaSolicitante.put(solicitante.getId(), solicitante);		
+	@Autowired
+	private SolicitanteRepository solicitanteRepository;
+	
+	public void incluir(Solicitante solicitante) {
+		solicitanteRepository.save(solicitante);
 		AppImpressao.relatorio("Inclusão do solicitante "+ solicitante.getNome() +" realizada com sucesso. ", solicitante);
 	}
 	public Collection<Solicitante> obterLista() {
-		return mapaSolicitante.values();
+		return (Collection<Solicitante>) solicitanteRepository.findAll();
+	}	
+	public Collection<Solicitante> obterLista(Usuario usuario) {
+		return solicitanteRepository.obterLista(usuario.getId());
 	}	
 	public void excluir(Integer id){
-		mapaSolicitante.remove(id);
+		solicitanteRepository.deleteById(id);		
 	}
 }

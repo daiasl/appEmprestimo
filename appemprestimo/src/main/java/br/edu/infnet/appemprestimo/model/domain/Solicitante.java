@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.edu.infnet.appemprestimo.interfaces.IPrinter;
@@ -21,6 +23,16 @@ public class Solicitante implements IPrinter{
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name="idUsuario")
+	private Usuario usuario;
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	private String nome;

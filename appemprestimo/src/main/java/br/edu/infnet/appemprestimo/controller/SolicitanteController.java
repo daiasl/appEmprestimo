@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.appemprestimo.model.domain.Solicitante;
+import br.edu.infnet.appemprestimo.model.domain.Usuario;
 import br.edu.infnet.appemprestimo.model.service.SolicitanteService;
 
 @Controller
@@ -16,8 +18,8 @@ public class SolicitanteController {
 	private SolicitanteService solicitanteService;
 	
 	@GetMapping(value= "/Solicitante/lista")
-	public String telaLista(Model model){
-		model.addAttribute("listagem",solicitanteService.obterLista());		
+	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
+		model.addAttribute("listagem",solicitanteService.obterLista(usuario));		
 		return "/Solicitante/lista";
 	}
 	
@@ -27,7 +29,9 @@ public class SolicitanteController {
 	}
 
 	@PostMapping(value= "/Solicitante/Incluir")
-	public String incluir(Solicitante solicitante){				
+	public String incluir(Solicitante solicitante, @SessionAttribute("user") Usuario usuario){			
+		solicitante.setUsuario(usuario);
+		
 		solicitanteService.incluir(solicitante);		
 		return "redirect:/Solicitante/lista";
 	}

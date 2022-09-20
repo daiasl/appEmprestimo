@@ -1,29 +1,28 @@
 package br.edu.infnet.appemprestimo.model.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appemprestimo.model.domain.MaterialDigital;
+import br.edu.infnet.appemprestimo.model.repository.MaterialDigitalRepository;
 import br.edu.infnet.appemprestimo.model.test.AppImpressao;
 
 @Service
 public class MaterialDigitalService {
 	
-	private static Map<Integer, MaterialDigital> mapaMaterialDigital = new HashMap<Integer, MaterialDigital>();	
-	private static Integer id=1; 	
+	@Autowired
+	private MaterialDigitalRepository materialDigitalRepository;	
 
 	public void incluir(MaterialDigital materialDigital) {			
-		materialDigital.setId(id++);
-		mapaMaterialDigital.put(materialDigital.getId(), materialDigital);		
+		materialDigitalRepository.save(materialDigital);		
 		AppImpressao.relatorio("Inclusão do Material Digital "+ materialDigital.getTitulo() +" realizada com sucesso. ", materialDigital);
 	}
 	public Collection<MaterialDigital> obterLista() {
-		return mapaMaterialDigital.values();
+		return (Collection<MaterialDigital>) materialDigitalRepository.findAll();
 	}	
 	public void excluir(Integer id){
-		mapaMaterialDigital.remove(id);
+		materialDigitalRepository.deleteById(id);
 	}
 }
