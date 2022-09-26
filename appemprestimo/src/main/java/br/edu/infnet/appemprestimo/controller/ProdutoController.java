@@ -1,24 +1,29 @@
 package br.edu.infnet.appemprestimo.controller;
 
-import java.util.Collection;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
-import br.edu.infnet.appemprestimo.model.domain.Produto;
+import br.edu.infnet.appemprestimo.model.domain.Usuario;
+import br.edu.infnet.appemprestimo.model.service.ProdutoService;
 
 @Controller
 public class ProdutoController {
-
-	public static Collection<Produto> obterLista() {		
-		return null;
-	}
+	@Autowired
+	private ProdutoService produtoService;
 	
 	@GetMapping(value= "/Produto/lista")
-	public String telaLista(Model model) {
-		///model.addAttribute("listagemProduto",obterLista());
+	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
+		model.addAttribute("listagem",produtoService.obterLista(usuario));
 		return "/Produto/lista";
-	}	
+	}
 	
+	@GetMapping(value="/Produto/{id}/Excluir")
+	public String excluir(@PathVariable Integer id) {
+		produtoService.excluir(id);
+		return "redirect:/Produto/lista";
+	}
 }

@@ -3,17 +3,41 @@ package br.edu.infnet.appemprestimo.model.domain;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import br.edu.infnet.appemprestimo.interfaces.IPrinter;
 import br.edu.infnet.appemprestimo.model.exceptions.EmprestimoSemProdutoException;
 import br.edu.infnet.appemprestimo.model.exceptions.SolicitanteNuloException;
 
+@Entity
+@Table(name="TEmprestimo")
 public class Emprestimo implements IPrinter {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private LocalDateTime dataEmprestimo;
 	private LocalDateTime dataDevolucao;
+	@OneToOne(cascade = CascadeType.DETACH) 
+	@JoinColumn(name = "idSolicitante")
 	private Solicitante solicitante;
+	@ManyToMany(cascade = CascadeType.DETACH)
 	private Set<Produto> produtos;
+	@ManyToOne
+	@JoinColumn(name="idUsuario")
+	private Usuario usuario;	
 	
+	public Emprestimo() {
+		
+	}
 	public Emprestimo(Solicitante solicitante, Set<Produto> produtos) throws SolicitanteNuloException, EmprestimoSemProdutoException {
 		
 		if(solicitante == null){
@@ -31,6 +55,17 @@ public class Emprestimo implements IPrinter {
 		this.produtos = produtos;
 	}
 	
+	@Override
+	public String toString() {		
+		return "Empréstimo: " + dataEmprestimo + ";" + dataDevolucao + ";" + solicitante + ";" + produtos.size();
+	}
+
+	@Override
+	public void impressao() {
+		System.out.println("#emprestimo");
+		System.out.println(this);		
+	}
+	
 	public LocalDateTime getDataEmprestimo() {
 		return dataEmprestimo;
 	}
@@ -42,18 +77,13 @@ public class Emprestimo implements IPrinter {
 	public void setDataDevolucao(LocalDateTime dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
 	}
-
-	@Override
-	public String toString() {		
-		return "Empréstimo: " + dataEmprestimo + ";" + dataDevolucao + ";" + solicitante + ";" + produtos.size();
+	public Usuario getUsuario() {
+		return usuario;
 	}
-
-	@Override
-	public void impressao() {
-		System.out.println("#emprestimo");
-		System.out.println(this);		
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -76,4 +106,5 @@ public class Emprestimo implements IPrinter {
 	public void setProdutos(Set<Produto> produtos) {
 		this.produtos = produtos;
 	}
+	
 }

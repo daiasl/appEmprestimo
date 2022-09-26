@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.edu.infnet.appemprestimo.model.domain.Livro;
+import br.edu.infnet.appemprestimo.model.domain.Emprestimo;
 
 @Repository
-public interface LivroRepository extends CrudRepository<Livro, Integer>{
-	@Query("from Livro l where l.usuario.id = :idUsuario")
-	Collection<Livro> findAll(Integer idUsuario);
+public interface EmprestimoRepository extends CrudRepository<Emprestimo, Integer>{
+	@Query("from Emprestimo e where e.usuario.id = :idUsuario")
+	Collection<Emprestimo> findAll(Integer idUsuario);
 }

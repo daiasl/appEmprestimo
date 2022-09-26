@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.appemprestimo.model.domain.Livro;
+import br.edu.infnet.appemprestimo.model.domain.Usuario;
 import br.edu.infnet.appemprestimo.model.service.LivroService;
 
 @Controller
@@ -16,8 +18,8 @@ public class LivroController {
 	private LivroService livroService;
 	
 	@GetMapping(value= "/Livro/lista")
-	public String telaLista(Model model){
-		model.addAttribute("listagem",livroService.obterLista());		
+	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
+		model.addAttribute("listagem",livroService.obterLista(usuario));		
 		return "/Livro/lista";
 	}
 	
@@ -33,7 +35,7 @@ public class LivroController {
 	}	
 		
 	@GetMapping(value="/Livro/{id}/Excluir")
-	public String exclusao(@PathVariable Integer id) {
+	public String excluir(@PathVariable Integer id) {
 		livroService.excluir(id);
 		return "redirect:/Livro/lista";
 	}

@@ -12,11 +12,12 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appemprestimo.model.domain.Livro;
+import br.edu.infnet.appemprestimo.model.domain.Usuario;
 import br.edu.infnet.appemprestimo.model.exceptions.AnoPublicacaoInvalidoException;
 import br.edu.infnet.appemprestimo.model.service.LivroService;
 
 @Component
-@Order(4)
+@Order(3)
 public class LivroTeste implements ApplicationRunner {
 	@Autowired
 	private LivroService livroService;
@@ -24,6 +25,9 @@ public class LivroTeste implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) {
 
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
+		
 		String dir = "C:\\dev\\pos-live\\appemprestimo\\src\\main\\resources\\arquivos\\";
 		String arq = "Produtos.txt";
 
@@ -50,6 +54,7 @@ public class LivroTeste implements ApplicationRunner {
 							livro.setCodigoBarras(campos[8]);
 							livro.setQtdDisponiveis(Integer.valueOf(campos[9]));
 							livro.setQtdExemplares(Integer.valueOf(campos[10]));
+							livro.setUsuario(usuario);
 							System.out.println(
 									"Calcula qtd. produto emprestado: " + livro.CalculaQtdProdutoEmprestado());
 							livroService.incluir(livro);

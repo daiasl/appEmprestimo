@@ -15,7 +15,7 @@ import br.edu.infnet.appemprestimo.model.domain.MaterialDigital;
 import br.edu.infnet.appemprestimo.model.service.MaterialDigitalService;
 
 @Component
-@Order(5)
+@Order(4)
 public class MaterialDigitalTeste implements ApplicationRunner {
 	@Autowired
 	private MaterialDigitalService mdService;

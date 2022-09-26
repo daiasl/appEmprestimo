@@ -1,5 +1,6 @@
 package br.edu.infnet.appemprestimo.model.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -8,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.edu.infnet.appemprestimo.interfaces.IPrinter;
@@ -28,6 +32,11 @@ public abstract class Produto implements IPrinter{
 	private String codigoBarras;
 	protected int qtdExemplares;
 	private int qtdDisponiveis;
+	@ManyToMany(mappedBy = "produtos")
+	private List<Emprestimo> emprestimos;
+	@ManyToOne
+	@JoinColumn(name="idUsuario")
+	private Usuario usuario;
 	
 	public abstract int CalculaQtdProdutoEmprestado() throws AnoPublicacaoInvalidoException, QuantidadeExemplaresZeradoNegativoException, QuantidadeIncorretaException;
 			
@@ -69,6 +78,20 @@ public abstract class Produto implements IPrinter{
 
 	public void setQtdDisponiveis(int qtdDisponiveis) {
 		this.qtdDisponiveis = qtdDisponiveis;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+
+	public void setEmprestimos(List<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
 	}
 
 	@Override

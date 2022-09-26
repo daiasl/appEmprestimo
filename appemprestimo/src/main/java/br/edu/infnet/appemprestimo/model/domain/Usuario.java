@@ -18,6 +18,19 @@ public class Usuario implements IPrinter{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	private String nome;
+	private String email;
+	private String senha;
+	@OneToMany
+	@JoinColumn(name="idUsuario")
+	private List<Solicitante> solicitantes;
+	@OneToMany
+	@JoinColumn(name="idUsuario")
+	private List<Produto> produtos;
+	@OneToMany
+	@JoinColumn(name="idUsuario")
+	private List<Emprestimo> emprestimos;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -25,13 +38,12 @@ public class Usuario implements IPrinter{
 		this.id = id;
 	}
 
-	private String nome;
-	private String email;
-	private String senha;
-	@OneToMany
-	@JoinColumn(name="idUsuario")
-	private List<Solicitante> solicitantes;
-	
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
 	public List<Solicitante> getSolicitantes() {
 		return solicitantes;
 	}
@@ -62,6 +74,12 @@ public class Usuario implements IPrinter{
 		return "Usuário: " + nome + ";" + email + ";" + senha;
 	}
 
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+	public void setEmprestimos(List<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
+	}
 	@Override
 	public void impressao() {
 		System.out.println("#usuario");

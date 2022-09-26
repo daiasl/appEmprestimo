@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appemprestimo.model.domain.Livro;
+import br.edu.infnet.appemprestimo.model.domain.Usuario;
 import br.edu.infnet.appemprestimo.model.repository.LivroRepository;
 import br.edu.infnet.appemprestimo.model.test.AppImpressao;
 
@@ -21,7 +22,10 @@ public class LivroService {
 	}
 	public Collection<Livro> obterLista() {
 		return (Collection<Livro>) livroRepository.findAll();
-	}	
+	}
+	public Collection<Livro> obterLista(Usuario usuario) {
+		return (Collection<Livro>) livroRepository.findAll(usuario.getId());
+	}
 	public void excluir(Integer id){
 		livroRepository.deleteById(id);
 	}

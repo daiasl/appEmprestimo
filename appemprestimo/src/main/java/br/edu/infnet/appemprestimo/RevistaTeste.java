@@ -15,7 +15,7 @@ import br.edu.infnet.appemprestimo.model.domain.Revista;
 import br.edu.infnet.appemprestimo.model.service.RevistaService;
 
 @Component
-@Order(6)
+@Order(5)
 public class RevistaTeste implements ApplicationRunner {
 	@Autowired
 	private RevistaService revistaService;

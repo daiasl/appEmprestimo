@@ -12,44 +12,34 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
-	<div class="container mt-3">		
-		<h3>Cadastramento de Produto</h3>
+	<div class="container mt-3">
+
+		<h3>Cadastramento de Produtos</h3>
+		
 		<table class="table table-striped">
 			<thead>
-				<tr>					
+				<tr>
+					<th>ID</th>
 					<th>Titulo</th>
 					<th>Estante</th>
 					<th>CodigoBarras</th>
 					<th>QtdDisponiveis</th>
 					<th>QtdExemplares</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Sistemas de Informação no Brasil: uma análise dos artigos
-						científicos dos anos 90</td>
-					<td>4</td>
-					<td>Não há</td>
-					<td>1</td>
-					<td>1</td>
-				</tr>
-				<tr>
-					<td>As redes cognitivas na ciência da informação brasileira:
-						um estudo nos artigos científicos publicados nos periódicos da
-						área</td>
-					<td>4</td>
-					<td>Não há</td>
-					<td>1</td>
-					<td>1</td>
-				</tr>
-				<tr>
-					<td>Perspectivas acerca do conceito de saúde mental: análise
-						das produções científicas brasileiras</td>
-					<td>4</td>
-					<td>Não há</td>
-					<td>1</td>
-					<td>1</td>
-				</tr>
+				<c:forEach var="p" items="${listagem}">
+					<tr>
+						<td>${p.id}</td>
+						<td>${p.titulo}</td>
+						<td>${p.estante}</td>
+						<td>${p.codigoBarras}</td>
+						<td>${p.qtdDisponiveis}</td>
+						<td>${p.qtdExemplares}</td>
+						<td><a href="/Produto/${p.id}/Excluir">Excluir</a></td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

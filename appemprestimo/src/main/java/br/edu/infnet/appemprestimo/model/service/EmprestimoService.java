@@ -1,28 +1,32 @@
 package br.edu.infnet.appemprestimo.model.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appemprestimo.model.domain.Emprestimo;
+import br.edu.infnet.appemprestimo.model.domain.Usuario;
+import br.edu.infnet.appemprestimo.model.repository.EmprestimoRepository;
 import br.edu.infnet.appemprestimo.model.test.AppImpressao;
 
 @Service
 public class EmprestimoService {
-	private static Map<Integer, Emprestimo> mapaEmprestimo = new HashMap<Integer, Emprestimo>();
-	private static Integer id=1; 	
-
+	
+	@Autowired
+	private EmprestimoRepository emprestimoRepository;
+	
 	public void incluir(Emprestimo emprestimo) {			
-		emprestimo.setId(id++);
-		mapaEmprestimo.put(emprestimo.getId(), emprestimo);		
+		emprestimoRepository.save(emprestimo);
 		AppImpressao.relatorio("Empréstimo realizado com sucesso.", emprestimo);
 	}
 	public Collection<Emprestimo> obterLista() {
-		return mapaEmprestimo.values();
+		return (Collection<Emprestimo>) emprestimoRepository.findAll(); 
 	}	
+	public Collection<Emprestimo> obterLista(Usuario usuario) {
+		return (Collection<Emprestimo>) emprestimoRepository.findAll(usuario.getId());
+	}
 	public void excluir(Integer id){
-		mapaEmprestimo.remove(id);
+		emprestimoRepository.deleteById(id);
 	}
 }
