@@ -29,7 +29,8 @@ public class LivroController {
 	}
 
 	@PostMapping(value= "/Livro/Incluir")
-	public String incluir(Livro livro){				
+	public String incluir(Livro livro, @SessionAttribute("user") Usuario usuario){		
+		livro.setUsuario(usuario);
 		livroService.incluir(livro);	
 		return "redirect:/";
 	}	

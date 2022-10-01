@@ -31,20 +31,22 @@ public class EmprestimoTeste implements ApplicationRunner {
 		try {
 			Usuario usuario = new Usuario();
 			usuario.setId(1);
-			
-			Set<Produto> produtos = new HashSet<Produto>();
-			
+								
 			Solicitante sol = new Solicitante();
 			sol.setId(1);
 			
+			Set<Produto> produtos = new HashSet<Produto>();
 			Livro livro = new Livro();
-			livro.setId(1);
+			livro.setId(1);			
+			livro.setAnoPublicacao(2020);
 			produtos.add(livro);
 			Livro livro2 = new Livro();
-			livro.setId(2);
+			livro2.setId(2);
+			livro2.setAnoPublicacao(2021);
 			produtos.add(livro2);
 			Livro livro3 = new Livro();
-			livro.setId(3);
+			livro3.setId(3);
+			livro3.setAnoPublicacao(2022);
 			produtos.add(livro3);
 	
 			Emprestimo emp = new Emprestimo(sol, produtos);

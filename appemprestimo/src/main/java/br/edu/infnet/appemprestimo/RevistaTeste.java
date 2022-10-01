@@ -12,6 +12,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appemprestimo.model.domain.Revista;
+import br.edu.infnet.appemprestimo.model.domain.Usuario;
 import br.edu.infnet.appemprestimo.model.service.RevistaService;
 
 @Component
@@ -22,6 +23,8 @@ public class RevistaTeste implements ApplicationRunner {
 	
 	@Override
 	public void run(ApplicationArguments args) {
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
 		
 		String dir = "C:\\dev\\pos-live\\appemprestimo\\src\\main\\resources\\arquivos\\";
 		String arq = "Produtos.txt";
@@ -37,17 +40,18 @@ public class RevistaTeste implements ApplicationRunner {
 				
 					if ("R".equalsIgnoreCase(campos[0])) {
 						try {
-							Revista revista1=new Revista();
-							revista1.setIssn(campos[1]);
-							revista1.setEdicao(Integer.valueOf(campos[2]));
-							revista1.setAno(Integer.valueOf(campos[3]));
-							revista1.setTitulo(campos[4]);
-							revista1.setEstante(Integer.valueOf(campos[5]));
-							revista1.setCodigoBarras(campos[6]);
-							revista1.setQtdDisponiveis(Integer.valueOf(campos[7]));
-							revista1.setQtdExemplares(Integer.valueOf(campos[8]));	
-							System.out.println("Calcula qtd. produto emprestado: " + revista1.CalculaQtdProdutoEmprestado());
-							revistaService.incluir(revista1);
+							Revista revista=new Revista();
+							revista.setIssn(campos[1]);
+							revista.setEdicao(Integer.valueOf(campos[2]));
+							revista.setAno(Integer.valueOf(campos[3]));
+							revista.setTitulo(campos[4]);
+							revista.setEstante(Integer.valueOf(campos[5]));
+							revista.setCodigoBarras(campos[6]);
+							revista.setQtdDisponiveis(Integer.valueOf(campos[7]));
+							revista.setQtdExemplares(Integer.valueOf(campos[8]));	
+							revista.setUsuario(usuario);
+							System.out.println("Calcula qtd. produto emprestado: " + revista.CalculaQtdProdutoEmprestado());
+							revistaService.incluir(revista);
 						} catch (Exception e) {
 							System.out.println("[ERROR - Revista] " + e.getMessage());
 						}	

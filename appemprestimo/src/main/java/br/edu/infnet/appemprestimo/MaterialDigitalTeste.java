@@ -12,6 +12,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.appemprestimo.model.domain.MaterialDigital;
+import br.edu.infnet.appemprestimo.model.domain.Usuario;
 import br.edu.infnet.appemprestimo.model.service.MaterialDigitalService;
 
 @Component
@@ -23,6 +24,9 @@ public class MaterialDigitalTeste implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) {
 
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
+		
 		String dir = "C:\\dev\\pos-live\\appemprestimo\\src\\main\\resources\\arquivos\\";
 		String arq = "Produtos.txt";
 
@@ -37,18 +41,19 @@ public class MaterialDigitalTeste implements ApplicationRunner {
 					
 					if ("M".equalsIgnoreCase(campos[0])) {
 						try {
-							MaterialDigital md1 = new MaterialDigital();
-							md1.setDoi(campos[1]);
-							md1.setAno(Integer.valueOf(campos[2]));
-							md1.setVolume(Integer.valueOf(campos[3]));
-							md1.setLinkDoi(campos[4]);
-							md1.setTitulo(campos[5]);
-							md1.setEstante(Integer.valueOf(campos[6]));
-							md1.setCodigoBarras(campos[7]);
-							md1.setQtdDisponiveis(Integer.valueOf(campos[8]));
-							md1.setQtdExemplares(Integer.valueOf(campos[9]));
-							System.out.println("Calcula qtd. produto emprestado: " + md1.CalculaQtdProdutoEmprestado());
-							mdService.incluir(md1);
+							MaterialDigital md = new MaterialDigital();
+							md.setDoi(campos[1]);
+							md.setAno(Integer.valueOf(campos[2]));
+							md.setVolume(Integer.valueOf(campos[3]));
+							md.setLinkDoi(campos[4]);
+							md.setTitulo(campos[5]);
+							md.setEstante(Integer.valueOf(campos[6]));
+							md.setCodigoBarras(campos[7]);
+							md.setQtdDisponiveis(Integer.valueOf(campos[8]));
+							md.setQtdExemplares(Integer.valueOf(campos[9]));
+							md.setUsuario(usuario);
+							System.out.println("Calcula qtd. produto emprestado: " + md.CalculaQtdProdutoEmprestado());
+							mdService.incluir(md);
 						} catch (Exception e) {
 							System.out.println("[ERROR - Material Digital] " + e.getMessage());
 						}	

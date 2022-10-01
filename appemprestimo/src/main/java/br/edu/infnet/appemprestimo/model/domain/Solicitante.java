@@ -18,25 +18,11 @@ public class Solicitante implements IPrinter{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
+	private String nome;
+	private String cpf;	
 	@ManyToOne
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	private String nome;
-	private String cpf;
 	
 	public Solicitante() {
 	}
@@ -53,6 +39,12 @@ public class Solicitante implements IPrinter{
 		this.nome=nome;
 	}
 	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -72,7 +64,12 @@ public class Solicitante implements IPrinter{
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	@Override
 	public String toString() {		

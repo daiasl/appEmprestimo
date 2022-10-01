@@ -41,7 +41,7 @@ public class Emprestimo implements IPrinter {
 	public Emprestimo(Solicitante solicitante, Set<Produto> produtos) throws SolicitanteNuloException, EmprestimoSemProdutoException {
 		
 		if(solicitante == null){
-			throw new SolicitanteNuloException("Não é permitido realiza empréstimo sem solicitante.");
+			throw new SolicitanteNuloException("Não é permitido realizar empréstimo sem solicitante.");
 		}
 		//if (produtos == null) {
 		//	throw new EmprestimoSemProdutoException("Impossível realizar um empréstimo sem uma listagem de produtos associados!");

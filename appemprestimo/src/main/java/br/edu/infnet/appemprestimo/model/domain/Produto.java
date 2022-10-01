@@ -21,7 +21,7 @@ import br.edu.infnet.appemprestimo.model.exceptions.QuantidadeIncorretaException
 
 @Entity
 @Table(name="TProduto")
-@Inheritance(strategy = InheritanceType.JOINED) //herança
+@Inheritance(strategy = InheritanceType.JOINED) 
 public abstract class Produto implements IPrinter{
 	
 	@Id
