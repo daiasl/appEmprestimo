@@ -39,9 +39,11 @@ public class Emprestimo implements IPrinter {
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;	
 	
-	public Emprestimo() {		
+	public Emprestimo() {
+		this.dataEmprestimo = LocalDateTime.now();
 	}
 	public Emprestimo(Solicitante solicitante, Set<Produto> produtos) throws SolicitanteNuloException, EmprestimoSemProdutoException {
+		this();
 		
 		if(solicitante == null){
 			throw new SolicitanteNuloException("Não é permitido realizar empréstimo sem solicitante.");
@@ -52,8 +54,6 @@ public class Emprestimo implements IPrinter {
 		//if (produtos.size()<1) {
 		//	throw new EmprestimoSemProdutoException("Impossível realizar um empréstimo com menos de um produto!");
 		//}
-		
-		this.dataEmprestimo = LocalDateTime.now();		
 		this.solicitante = solicitante;
 		this.produtos = produtos;
 	}

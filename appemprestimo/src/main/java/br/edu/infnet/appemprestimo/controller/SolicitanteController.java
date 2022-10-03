@@ -16,10 +16,14 @@ import br.edu.infnet.appemprestimo.model.service.SolicitanteService;
 public class SolicitanteController {
 	@Autowired
 	private SolicitanteService solicitanteService;
+	private String mensagem;
+	private String tipo;
 	
 	@GetMapping(value= "/Solicitante/lista")
 	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
-		model.addAttribute("listagem",solicitanteService.obterLista(usuario));		
+		model.addAttribute("listagem",solicitanteService.obterLista(usuario));	
+		model.addAttribute("mensagem", mensagem);
+		model.addAttribute("tipo", tipo);
 		return "/Solicitante/lista";
 	}
 	
@@ -30,15 +34,23 @@ public class SolicitanteController {
 
 	@PostMapping(value= "/Solicitante/Incluir")
 	public String incluir(Solicitante solicitante, @SessionAttribute("user") Usuario usuario){			
-		solicitante.setUsuario(usuario);
-		
-		solicitanteService.incluir(solicitante);		
+		solicitante.setUsuario(usuario);		
+		solicitanteService.incluir(solicitante);
+		mensagem="Inclusão do solicitante " + solicitante.getNome() + " realizada com sucesso!";
+		tipo="alert-success";
 		return "redirect:/Solicitante/lista";
 	}
 	
 	@GetMapping(value="/Solicitante/{id}/Excluir")
 	public String excluir(@PathVariable Integer id) {
-		solicitanteService.excluir(id);
+		try {
+			solicitanteService.excluir(id);
+			mensagem="Exclusão do solicitante " + id + " realizada com sucesso!";
+			tipo="alert-success";
+		} catch (Exception e) {
+			mensagem="Impossível realizar a exclusão do solicitante " + id + "!";
+			tipo="alert-danger";
+		}		
 		return "redirect:/Solicitante/lista";
 	}
 	

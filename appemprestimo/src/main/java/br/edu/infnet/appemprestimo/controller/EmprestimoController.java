@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.appemprestimo.model.domain.Emprestimo;
-import br.edu.infnet.appemprestimo.model.domain.Produto;
 import br.edu.infnet.appemprestimo.model.domain.Usuario;
 import br.edu.infnet.appemprestimo.model.service.EmprestimoService;
 import br.edu.infnet.appemprestimo.model.service.ProdutoService;
@@ -25,8 +24,8 @@ public class EmprestimoController {
 	private ProdutoService produtoService;
 		
 	@GetMapping(value= "/Emprestimo/lista")
-	public String telaLista(Model model){
-		model.addAttribute("listagemEmprestimo",emprestimoService.obterLista());		
+	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
+		model.addAttribute("listagemEmprestimo",emprestimoService.obterLista(usuario));		
 		return "/Emprestimo/lista";
 	}	
 	
@@ -38,16 +37,9 @@ public class EmprestimoController {
 	}
 
 	@PostMapping(value= "/Emprestimo/Incluir")
-	public String incluir(Emprestimo emprestimo){				
+	public String incluir(Emprestimo emprestimo, @SessionAttribute("user") Usuario usuario){				
+		emprestimo.setUsuario(usuario);
 		emprestimoService.incluir(emprestimo);
-		System.out.println("Emp.id=" + emprestimo.getId());
-		System.out.println("Emp.sol.nome=" + emprestimo.getSolicitante().getNome());
-		System.out.println("Emp.prod.size=" + emprestimo.getProdutos().size());
-		for (Produto produto : emprestimo.getProdutos()) {
-			System.out.println("Emp.prod.id=" + produto.getId());
-			System.out.println("Emp.prod.titulo=" + produto.getTitulo());
-		}
-		
 		return "redirect:/Emprestimo/lista";
 	}
 	
