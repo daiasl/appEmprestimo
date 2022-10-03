@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import br.edu.infnet.appemprestimo.interfaces.IPrinter;
 import br.edu.infnet.appemprestimo.model.exceptions.EmprestimoSemProdutoException;
 import br.edu.infnet.appemprestimo.model.exceptions.SolicitanteNuloException;
@@ -24,7 +26,9 @@ public class Emprestimo implements IPrinter {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private LocalDateTime dataEmprestimo;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	private LocalDateTime dataEmprestimo;		
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	private LocalDateTime dataDevolucao;
 	@OneToOne(cascade = CascadeType.DETACH) 
 	@JoinColumn(name = "idSolicitante")
@@ -35,8 +39,7 @@ public class Emprestimo implements IPrinter {
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;	
 	
-	public Emprestimo() {
-		
+	public Emprestimo() {		
 	}
 	public Emprestimo(Solicitante solicitante, Set<Produto> produtos) throws SolicitanteNuloException, EmprestimoSemProdutoException {
 		
@@ -69,11 +72,9 @@ public class Emprestimo implements IPrinter {
 	public LocalDateTime getDataEmprestimo() {
 		return dataEmprestimo;
 	}
-
 	public LocalDateTime getDataDevolucao() {
 		return dataDevolucao;
 	}
-
 	public void setDataDevolucao(LocalDateTime dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
 	}

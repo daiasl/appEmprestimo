@@ -22,9 +22,9 @@
 			</div>
 			<div class="mb-3">
 				<label>Solicitante:</label> 
-				<select class="form-control" id="sel1">
+				<select name="solicitante" class="form-control" id="sel1">
 					<c:forEach var="s" items="${solicitantes}">					
-						<option>${s.nome}</option>						
+						<option value="${s.id}" >${s.nome}</option>						
 					</c:forEach>
 				</select>
 			</div>
@@ -32,7 +32,7 @@
 				<label>Produtos:</label>
 				<c:forEach var="p" items="${produtos}">
 					<div class="checkbox">
-						<label><input type="checkbox" value="">${p.titulo}</label>
+						<label><input type="checkbox" name="produtos" value="${p.id}">${p.titulo}</label>
 					</div>
 				</c:forEach>
 			</div>
