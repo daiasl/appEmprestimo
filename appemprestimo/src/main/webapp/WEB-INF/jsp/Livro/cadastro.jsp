@@ -10,11 +10,11 @@
 <meta charset="ISO-8859-1">
 <title>AppEmprestimo</title>
 </head>
-<body>
+<body>	
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 	<div class="container mt-3">
 		<h2>Cadastramento de Livros</h2>
-		<form action="/Livro/Incluir" method="post">			
+		<form action="/Livro/Incluir" method="post">		
 			<div class="mb-3 mt-3">
 				<label>Isbn:</label> <input type="text" class="form-control"
 				    placeholder="Entre com o código ISBN" name="isbn">
@@ -33,9 +33,9 @@
 			</div>					
 			<div class="mb-3 mt-3">
 				<label>Nome do Autor:</label> <input type="text" class="form-control"
-					placeholder="Entre com o título" name="nomeAutor">
+					placeholder="Entre com o nome do autor" name="nomeAutor">
 			</div>
-			<c:import url="/WEB-INF/jsp/Produto/cadastro.jsp"/>
+			<c:import url="/WEB-INF/jsp/Produto/cadastro.jsp"/>			
 			<button type="submit" class="btn btn-primary">Cadastrar</button>
 		</form>
 	</div>

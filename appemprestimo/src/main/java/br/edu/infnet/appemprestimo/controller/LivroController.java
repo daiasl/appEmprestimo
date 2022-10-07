@@ -16,10 +16,14 @@ import br.edu.infnet.appemprestimo.model.service.LivroService;
 public class LivroController {				
 	@Autowired
 	private LivroService livroService;
+	private String mensagem;
+	private String tipo;
 	
 	@GetMapping(value= "/Livro/lista")
 	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
-		model.addAttribute("listagem",livroService.obterLista(usuario));		
+		model.addAttribute("listagem",livroService.obterLista(usuario));	
+		model.addAttribute("mensagem", mensagem);
+		model.addAttribute("tipo", tipo);
 		return "/Livro/lista";
 	}
 	
@@ -31,13 +35,22 @@ public class LivroController {
 	@PostMapping(value= "/Livro/Incluir")
 	public String incluir(Livro livro, @SessionAttribute("user") Usuario usuario){		
 		livro.setUsuario(usuario);
-		livroService.incluir(livro);	
+		livroService.incluir(livro);
+		mensagem="Inclusão do livro " + livro.getTitulo() + " realizada com sucesso!";
+		tipo="alert-success";
 		return "redirect:/";
 	}	
 		
 	@GetMapping(value="/Livro/{id}/Excluir")
 	public String excluir(@PathVariable Integer id) {
-		livroService.excluir(id);
+		try {
+			livroService.excluir(id);
+			mensagem="Exclusão do livro " + id + " realizada com sucesso!";
+			tipo="alert-success";
+		} catch (Exception e) {
+			mensagem="Impossível realizar a exclusão do livro " + id + "!";
+			tipo="alert-danger";
+		}
 		return "redirect:/Livro/lista";
 	}
 }
