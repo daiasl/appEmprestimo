@@ -13,6 +13,12 @@
 <body>
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 	<div class="container mt-3">
+		<c:if test="${not empty mensagem}">
+			<div class="alert ${tipo}">
+			  <strong>Informação</strong> ${mensagem}
+			</div>
+		</c:if>
+		
 		<h3>Cadastramento de Material Digital</h3>
 		
 		<h4><a href="/MaterialDigital">Novo cadastro</a></h4>

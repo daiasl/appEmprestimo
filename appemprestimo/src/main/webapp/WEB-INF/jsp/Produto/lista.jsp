@@ -11,11 +11,16 @@
 <title>AppEmprestimo</title>
 </head>
 <body>
-	<c:import url="/WEB-INF/jsp/menu.jsp"/>
+	<c:import url="/WEB-INF/jsp/menu.jsp" />
 	<div class="container mt-3">
+		<c:if test="${not empty mensagem}">
+			<div class="alert ${tipo}">
+				<strong>Informação</strong> ${mensagem}
+			</div>
+		</c:if>
 
 		<h3>Cadastramento de Produtos</h3>
-		
+
 		<table class="table table-striped">
 			<thead>
 				<tr>

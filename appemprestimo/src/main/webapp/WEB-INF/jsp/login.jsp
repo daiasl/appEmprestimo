@@ -11,7 +11,7 @@
 <title>AppEmprestimo</title>
 </head>
 <body>
-	<c:import url="/WEB-INF/jsp/menu.jsp"/>
+	<c:import url="/WEB-INF/jsp/menu.jsp" />
 	<div class="container mt-3">
 		<h2>LOGIN</h2>
 		<form action="/login" method="post">
@@ -23,7 +23,7 @@
 			<div class="mb-3">
 				<label for="pwd">Password:</label> <input type="password"
 					class="form-control" placeholder="Entre com a sua senha"
-					name="senha">
+					name="senha">				
 			</div>			
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>

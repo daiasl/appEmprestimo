@@ -16,10 +16,14 @@ import br.edu.infnet.appemprestimo.model.service.RevistaService;
 public class RevistaController {
 	@Autowired
 	private RevistaService revistaService;
+	private String mensagem;
+	private String tipo;
 		
 	@GetMapping(value= "/Revista/lista")
 	public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
-		model.addAttribute("listagemRevista",revistaService.obterLista(usuario));		
+		model.addAttribute("listagemRevista",revistaService.obterLista(usuario));
+		model.addAttribute("mensagem", mensagem);
+		model.addAttribute("tipo", tipo);
 		return "/Revista/lista";
 	}	
 	@GetMapping(value= "/Revista")
@@ -31,11 +35,20 @@ public class RevistaController {
 	public String incluir(Revista revista, @SessionAttribute("user") Usuario usuario){	
 		revista.setUsuario(usuario);
 		revistaService.incluir(revista);	
+		mensagem="Inclusão da revista " + revista.getTitulo() + " realizada com sucesso!";
+		tipo="alert-success";
 		return "redirect:/";
 	}
 	@GetMapping(value="/Revista/{id}/Excluir")
 	public String exclusao(@PathVariable Integer id) {
-		revistaService.excluir(id);
+		try {
+			revistaService.excluir(id);
+			mensagem="Exclusão da revista " + id + " realizada com sucesso!";
+			tipo="alert-success";
+		} catch (Exception e) {
+			mensagem="Impossível realizar a exclusão da revista " + id + "!";
+			tipo="alert-danger";
+		}		
 		return "redirect:/Revista/lista";
 	}
 }
