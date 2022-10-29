@@ -5,22 +5,43 @@ import java.util.List;
 
 public class Emprestimo {
 
-	private Long codigo;	
+	@Override
+	public String toString() {
+		return "Emprestimo [numero=" + numero + ", dataEmprestimo=" + dataEmprestimo + ", dataDevolucao="
+				+ dataDevolucao + ", solicitante=" + solicitante + ", produtos=" + produtos + "]";
+	}
+
+	private Long numero;	
 	private LocalDate dataEmprestimo;	
 	private LocalDate dataDevolucao;
 	private Solicitante solicitante;
 	private List<Produto> produtos;
 		
-	public Emprestimo() {
-		this.dataEmprestimo = LocalDate.now();
+	public List<Produto> getProdutos() {
+		return produtos;
 	}
-	
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public Emprestimo() {		
+	}
+		
+	public Emprestimo(Long numero, LocalDate dataDevolucao, Solicitante solicitante) {
+		super();
+		this.numero = numero;
+		this.dataEmprestimo = LocalDate.now();
+		this.dataDevolucao = dataDevolucao;
+		this.solicitante = solicitante;		
+	}
+
 	public Long getCodigo() {
-		return codigo;
+		return numero;
 	}
 
 	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+		this.numero = codigo;
 	}
 
 	public LocalDate getDataDevolucao() {

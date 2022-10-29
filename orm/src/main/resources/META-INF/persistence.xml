@@ -8,12 +8,12 @@
             Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide
         </description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>br.edu.infnet.test.modelo.entidade.Solicitante</class>
+        <class>br.edu.infnet.orm.modelo.entidade.Solicitante</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/aula04?createDatabaseIfNotExist=true" />
             <property name="javax.persistence.jdbc.user" value="root" />
-            <property name="javax.persistence.jdbc.password" value="" />
+            <property name="javax.persistence.jdbc.password" value="root123" />
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 
 

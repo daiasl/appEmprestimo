@@ -1,13 +1,23 @@
-package br.edu.infnet.emprestimo.modelo.entidades;
+package br.edu.infnet.orm.modelo.entidade;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Solicitante {
-	private Long codigo;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long codigo;		
+	private String nome;
+	private String cpf;
+	
 	@Override
 	public String toString() {
 		return "Solicitante [codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + "]";
 	}
-	private String nome;
-	private String cpf;
 	
 	public Solicitante() {		
 	}
