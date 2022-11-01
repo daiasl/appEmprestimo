@@ -1,9 +1,14 @@
 package br.edu.infnet.orm.modelo.entidade;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Solicitante {
@@ -13,7 +18,17 @@ public class Solicitante {
 	private Long codigo;		
 	private String nome;
 	private String cpf;
-	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Contato> contatos;
+		
+	public List<Contato> getContatos() {
+		return contatos;
+	}
+
+	public void setContatos(List<Contato> contatos) {
+		this.contatos = contatos;
+	}
+
 	@Override
 	public String toString() {
 		return "Solicitante [codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + "]";
