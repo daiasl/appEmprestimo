@@ -41,6 +41,12 @@ public class App
     	livro.setValorUnitario(10);
     	livro.setVolume(1);
     	dao.salvar(livro);
+    	System.out.println(dao.listaTodos());
+    	
+    	
+    	
+    	
+    	
     	
 		/*
 		 * IDAO solDAO = new SolicitanteDAO();

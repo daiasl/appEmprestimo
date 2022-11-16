@@ -5,5 +5,4 @@ import br.edu.infnet.orm.modelo.entidade.Solicitante;
 public class SolicitanteDAO extends JpaDAO<Solicitante> {
 	
 	
-	
 }

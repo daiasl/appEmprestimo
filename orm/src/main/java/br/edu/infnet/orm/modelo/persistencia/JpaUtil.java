@@ -12,7 +12,7 @@ public class JpaUtil {
 	}
 	
 	public static EntityManager createEntityManager() {		
-		return null;
+		return emf.createEntityManager();
 	}
 	
 }
